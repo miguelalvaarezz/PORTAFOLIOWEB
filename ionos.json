@@ -1,0 +1,16 @@
+{
+  "name": "portafolio-web-avanzado",
+  "version": "1.0.0",
+  "description": "Portfolio web profesional con Next.js",
+  "main": "next.config.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}

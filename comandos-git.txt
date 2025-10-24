@@ -1,0 +1,24 @@
+# Comandos para subir a GitHub
+
+## 1. Inicializar repositorio
+git init
+
+## 2. Agregar todos los archivos
+git add .
+
+## 3. Primer commit
+git commit -m "Initial commit: Portafolio profesional Miguel Álvarez"
+
+## 4. Conectar con GitHub (REEMPLAZA TU-USUARIO por tu usuario de GitHub)
+git remote add origin https://github.com/TU-USUARIO/NOMBRE-DEL-REPOSITORIO.git
+
+## 5. Subir al repositorio
+git push -u origin main
+
+## Si tienes problemas con la rama principal:
+git branch -M main
+git push -u origin main
+
+## Para verificar el estado:
+git status
+git remote -v
