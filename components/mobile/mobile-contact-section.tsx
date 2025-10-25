@@ -127,7 +127,7 @@ export function MobileContactSection() {
 
 
   return (
-    <section id="contacto" ref={ref} className="py-16 bg-gray-50 relative -mt-8 px-4">
+    <section id="contacto-mobile" ref={ref} className="py-16 bg-gray-50 relative -mt-8 px-4">
       {/* Section Transition */}
       <div className="absolute top-0 left-0 right-0">
         <svg

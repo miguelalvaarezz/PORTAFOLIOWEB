@@ -65,7 +65,7 @@ export function MobileProjectsSection() {
   };
 
   return (
-    <section id="proyectos" ref={ref} className="relative pt-12 pb-8 bg-blue-800 overflow-hidden px-4">
+    <section id="proyectos-mobile" ref={ref} className="relative pt-12 pb-8 bg-blue-800 overflow-hidden px-4">
       {/* Subtle Pattern Overlay */}
       <div className="absolute inset-0 opacity-5">
         <div 

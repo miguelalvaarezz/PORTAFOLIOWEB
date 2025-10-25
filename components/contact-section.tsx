@@ -354,7 +354,7 @@ export function ContactSection() {
                     </p>
                   </motion.div>
                 ) : (
-                  <form id="contacto" onSubmit={handleSubmit} className="space-y-8">
+                  <form id="contacto-form" onSubmit={handleSubmit} className="space-y-8">
                     <div className="grid md:grid-cols-2 gap-6">
                       <motion.div
                         className="space-y-3"

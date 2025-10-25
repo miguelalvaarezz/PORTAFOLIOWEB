@@ -58,7 +58,7 @@ export function MobileSkillsSection() {
   const isInView = useInView(ref, { once: true, margin: "-200px" });
 
   return (
-    <section id="habilidades" ref={ref} className="py-16 bg-black px-4 -mt-16">
+    <section id="habilidades-mobile" ref={ref} className="py-16 bg-black px-4 -mt-16">
       <div className="max-w-sm mx-auto px-6">
         
         {/* Header */}

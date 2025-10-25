@@ -32,7 +32,7 @@ export function MobileAboutSection() {
 
   return (
     <section 
-      id="sobre-mi" 
+      id="sobre-mi-mobile" 
       ref={sectionRef}
       className="relative bg-gray-50 pt-16 pb-20 overflow-hidden px-4"
     >

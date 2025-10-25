@@ -47,7 +47,7 @@ export function MobileHeroSection() {
 
   return (
     <section 
-      id="inicio"
+      id="inicio-mobile"
       className="relative h-[85vh] flex items-center justify-center overflow-hidden hero-gradient px-4"
     >
       {/* Animated Background */}
