@@ -11,10 +11,10 @@ interface MobileSideMenuProps {
 
 export function MobileSideMenu({ isOpen, onClose }: MobileSideMenuProps) {
   const navItems = [
-    { id: "sobre-mi", label: "Sobre Mí" },
-    { id: "proyectos", label: "Proyectos" },
-    { id: "habilidades", label: "Habilidades" },
-    { id: "contacto", label: "Contacto" }
+    { id: "sobre-mi-mobile", label: "Sobre Mí" },
+    { id: "proyectos-mobile", label: "Proyectos" },
+    { id: "habilidades-mobile", label: "Habilidades" },
+    { id: "contacto-mobile", label: "Contacto" }
   ];
 
   const scrollToSection = (sectionId: string) => {

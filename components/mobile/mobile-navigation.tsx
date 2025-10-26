@@ -23,17 +23,17 @@ export function MobileNavigation({ onMenuToggle, isMenuOpen }: MobileNavigationP
   }, []);
 
   const navItems = [
-    { sectionId: "sobre-mi", label: "Sobre Mí" },
-    { sectionId: "proyectos", label: "Proyectos" },
-    { sectionId: "habilidades", label: "Habilidades" },
-    { sectionId: "contacto", label: "Contacto" },
+    { sectionId: "sobre-mi-mobile", label: "Sobre Mí" },
+    { sectionId: "proyectos-mobile", label: "Proyectos" },
+    { sectionId: "habilidades-mobile", label: "Habilidades" },
+    { sectionId: "contacto-mobile", label: "Contacto" },
   ];
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       // Special handling for habilidades section - center the section in viewport
-      if (sectionId === 'habilidades') {
+      if (sectionId === 'habilidades-mobile') {
         const rect = element.getBoundingClientRect();
         const elementTop = window.pageYOffset + rect.top;
         const elementHeight = rect.height;

@@ -20,7 +20,7 @@ export function MobileHeroSection() {
   ];
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contacto');
+    const contactSection = document.getElementById('contacto-mobile');
     if (contactSection) {
       const elementRect = contactSection.getBoundingClientRect();
       const elementTop = window.pageYOffset + elementRect.top;
@@ -33,7 +33,7 @@ export function MobileHeroSection() {
   };
 
   const scrollToProjects = () => {
-    const projectsSection = document.getElementById('proyectos');
+    const projectsSection = document.getElementById('proyectos-mobile');
     if (projectsSection) {
       const elementRect = projectsSection.getBoundingClientRect();
       const elementTop = window.pageYOffset + elementRect.top;
