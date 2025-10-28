@@ -5,6 +5,7 @@ import { Footer } from "@/components/footer";
 import { CustomCursor } from "@/components/custom-cursor";
 import { MobileVersion } from "@/components/mobile/mobile-version";
 import { ViewportOptimizer } from "@/components/viewport-optimizer";
+import { DesktopOnlyMessage } from "@/components/mobile/desktop-only-message";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -100,8 +101,8 @@ export default function RootLayout({
         <ViewportOptimizer />
         <CustomCursor />
         
-        {/* VERSIÓN MÓVIL - CERO IMPACTO EN DESKTOP */}
-        <MobileVersion />
+        {/* MENSAJE SOLO PARA MÓVIL */}
+        <DesktopOnlyMessage />
         
         {/* VERSIÓN DESKTOP - CÓDIGO ORIGINAL INTACTO */}
         <main className="relative desktop-version">

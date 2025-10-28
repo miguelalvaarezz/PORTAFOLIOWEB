@@ -7,6 +7,8 @@ import { MobileHeroSection } from "./mobile-hero-section";
 import { MobileAboutSection } from "./mobile-about-section";
 import { MobileProjectsSection } from "./mobile-projects-section";
 import { MobileSkillsSection } from "./mobile-skills-section";
+import { MobileSkillsDuplicateSection } from "./mobile-skills-duplicate-section";
+import { MobileYoSection } from "./mobile-yo-section";
 import { MobileContactSection } from "./mobile-contact-section";
 import { MobileFooter } from "./mobile-footer";
 import { useResponsive } from "@/hooks/useResponsive";
@@ -35,6 +37,8 @@ export function MobileVersion() {
       <MobileAboutSection />
       <MobileProjectsSection />
       <MobileSkillsSection />
+      <MobileSkillsDuplicateSection />
+      <MobileYoSection />
       <MobileContactSection />
       <MobileFooter />
     </div>

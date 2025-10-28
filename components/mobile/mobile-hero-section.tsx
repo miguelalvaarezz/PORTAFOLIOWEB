@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Code, Palette, Sparkles, Zap, MessageCircle, ArrowRight } from "lucide-react";
+import { Code, Palette, Sparkles, Zap, MessageCircle, Award } from "lucide-react";
+import Image from "next/image";
 
 export function MobileHeroSection() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -20,27 +21,21 @@ export function MobileHeroSection() {
   ];
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contacto-mobile');
+    const contactSection = document.getElementById('contacto');
     if (contactSection) {
-      const elementRect = contactSection.getBoundingClientRect();
-      const elementTop = window.pageYOffset + elementRect.top;
-      
-      window.scrollTo({
-        top: elementTop - 80, // 80px de offset para el header
-        behavior: 'smooth'
+      contactSection.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
       });
     }
   };
 
   const scrollToProjects = () => {
-    const projectsSection = document.getElementById('proyectos-mobile');
+    const projectsSection = document.getElementById('proyectos');
     if (projectsSection) {
-      const elementRect = projectsSection.getBoundingClientRect();
-      const elementTop = window.pageYOffset + elementRect.top;
-      
-      window.scrollTo({
-        top: elementTop - 80, // 80px de offset para el header
-        behavior: 'smooth'
+      projectsSection.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
       });
     }
   };
@@ -53,6 +48,18 @@ export function MobileHeroSection() {
       {/* Animated Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-black to-gray-900"></div>
+        
+        {/* Background Image */}
+        <div className="absolute inset-0 pointer-events-none">
+          <Image
+            src="/padel-hero.webp"
+            alt="Padel Background"
+            fill
+            className="object-cover opacity-60"
+            priority
+            quality={90}
+          />
+        </div>
         
         {/* Floating Particles */}
         {floatingElements.map((element, index) => {
@@ -86,146 +93,160 @@ export function MobileHeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-sm mx-auto text-center -mt-8">
+      <div className="relative z-10 w-full max-w-sm mx-auto text-center px-4">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ 
-            duration: 1.2, 
-            delay: 0.3,
+            duration: 1.0, 
+            delay: 0.2,
             ease: [0.25, 0.46, 0.45, 0.94]
           }}
           className="space-y-6"
         >
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ 
+              duration: 0.7, 
+              delay: 0.4,
+              ease: [0.34, 1.56, 0.64, 1]
+            }}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600/20 border border-blue-500/30 rounded-full backdrop-blur-sm"
+          >
+            <Award className="w-4 h-4 text-blue-400" />
+            <span className="text-xs text-blue-300 font-medium">
+              Especializado en presencia digital para clubes de pádel
+            </span>
+          </motion.div>
+
           {/* Main Heading */}
           <div className="space-y-3">
             <motion.h1 
-              className="text-4xl md:text-5xl font-black text-white leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              className="text-2xl sm:text-3xl font-black text-white leading-tight"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ 
-                duration: 1.0, 
-                delay: 0.5,
-                ease: [0.25, 0.46, 0.45, 0.94]
+                duration: 0.9, 
+                delay: 0.6,
+                ease: [0.23, 1, 0.32, 1]
               }}
             >
-              <motion.span
-                className="block bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 bg-clip-text text-transparent"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: 0.7,
-                  ease: [0.34, 1.56, 0.64, 1]
-                }}
-              >
-                Creo experiencias
-              </motion.span>
-              <motion.span
-                className="block text-white"
+              <motion.span 
+                className="block"
                 initial={{ opacity: 0, y: 20 }}
-                animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ 
                   duration: 0.8, 
-                  delay: 0.9,
-                  ease: [0.25, 0.46, 0.45, 0.94]
+                  delay: 0.85,
+                  ease: [0.23, 1, 0.32, 1]
                 }}
               >
-                digitales únicas.
+                Transforma tu{" "}
+                <motion.span 
+                  className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 bg-clip-text text-transparent"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ 
+                    duration: 0.7, 
+                    delay: 1.05,
+                    ease: [0.34, 1.56, 0.64, 1]
+                  }}
+                >
+                  club de pádel
+                </motion.span>
+              </motion.span>
+              <motion.span 
+                className="block"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: 1.15,
+                  ease: [0.23, 1, 0.32, 1]
+                }}
+              >
+                con una web atractiva, reservas
+              </motion.span>
+              <motion.span 
+                className="block"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: 1.3,
+                  ease: [0.23, 1, 0.32, 1]
+                }}
+              >
+                automáticas y torneos online.
               </motion.span>
             </motion.h1>
           </div>
 
           {/* Subtitle */}
           <motion.p
-            className="text-lg text-gray-300 leading-relaxed px-2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            className="text-base text-gray-300 leading-relaxed px-2"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ 
-              duration: 1.0, 
-              delay: 1.1,
-              ease: [0.25, 0.46, 0.45, 0.94]
+              duration: 0.8, 
+              delay: 1.5,
+              ease: [0.23, 1, 0.32, 1]
             }}
           >
-            Desde el concepto hasta el código, transformo ideas en realidades digitales que conectan, inspiran y generan resultados excepcionales.
+            <strong>Aumenta tus reservas, ahorra tiempo de gestión y destaca</strong> frente a otros clubes con una web personalizada y totalmente optimizada.
           </motion.p>
 
-          {/* CTA Buttons - Two rows like desktop */}
+          {/* CTA Buttons */}
           <motion.div
-            className="space-y-3"
+            className="flex flex-col gap-3 pt-4"
             initial={{ opacity: 0, y: 30 }}
-            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ 
-              duration: 1.0, 
-              delay: 1.3,
-              ease: [0.25, 0.46, 0.45, 0.94]
+              duration: 0.8, 
+              delay: 1.7,
+              ease: [0.23, 1, 0.32, 1]
             }}
           >
-            {/* First Row - Ver Proyectos */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-              transition={{ 
-                duration: 0.8, 
-                delay: 1.5,
-                ease: [0.25, 0.46, 0.45, 0.94]
-              }}
+            <Button 
+              onClick={scrollToProjects}
+              size="lg"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-2xl group"
             >
-              <Button
-                onClick={scrollToProjects}
-                size="sm"
-                className="w-3/4 mx-auto bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg group"
-                data-cursor-magnetic
-              >
-                <Code className="w-4 h-4 mr-2 group-hover:animate-spin" />
-                Ver Proyectos
-              </Button>
-            </motion.div>
-
-            {/* Second Row - Cuéntame tu idea */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-              transition={{ 
-                duration: 0.8, 
-                delay: 1.7,
-                ease: [0.25, 0.46, 0.45, 0.94]
-              }}
+              <Code className="w-5 h-5 mr-2 group-hover:animate-spin" />
+              Ver demo gratuita
+            </Button>
+            <Button 
+              onClick={scrollToContact}
+              size="lg"
+              className="bg-transparent border border-white text-white hover:bg-white hover:text-black font-semibold transition-all duration-300 group"
             >
-              <Button
-                onClick={scrollToContact}
-                size="sm"
-                className="w-3/4 mx-auto bg-transparent border border-white text-white hover:bg-white hover:text-black font-semibold transition-all duration-300 group"
-                data-cursor-magnetic
-              >
-                <MessageCircle className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
-                Cuéntame tu idea
-              </Button>
-            </motion.div>
+              <MessageCircle className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" />
+              Agenda una llamada
+            </Button>
           </motion.div>
-
-
         </motion.div>
       </div>
 
       {/* Stats Container - Bottom centered */}
       <motion.div
         className="absolute bottom-4 left-0 right-0 z-30 flex justify-center px-4"
-        initial={{ opacity: 0, y: 60 }}
+        initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
-          duration: 1.2, 
-          delay: 2.3,
-          ease: [0.25, 0.46, 0.45, 0.94]
+          duration: 1.0, 
+          delay: 1.9,
+          ease: [0.23, 1, 0.32, 1]
         }}
       >
         <motion.div 
           className="relative bg-black/70 backdrop-blur-md border border-white/20 rounded-xl px-4 py-3 overflow-hidden"
-          initial={{ scale: 0.8, opacity: 0 }}
+          initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ 
-            duration: 0.8, 
-            delay: 2.5,
+            duration: 0.9, 
+            delay: 2.1,
             ease: [0.34, 1.56, 0.64, 1]
           }}
         >
@@ -243,17 +264,17 @@ export function MobileHeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ 
                   duration: 0.6, 
-                  delay: 2.7 + index * 0.1,
-                  ease: [0.25, 0.46, 0.45, 0.94]
+                  delay: 2.3 + index * 0.15,
+                  ease: [0.23, 1, 0.32, 1]
                 }}
               >
                 <motion.div 
                   className="text-lg font-bold text-white mb-1"
-                  initial={{ scale: 0.5 }}
+                  initial={{ scale: 0.6 }}
                   animate={{ scale: 1 }}
                   transition={{ 
-                    duration: 0.5, 
-                    delay: 2.9 + index * 0.1,
+                    duration: 0.6, 
+                    delay: 2.5 + index * 0.15,
                     ease: [0.34, 1.56, 0.64, 1]
                   }}
                 >
@@ -269,16 +290,15 @@ export function MobileHeroSection() {
       </motion.div>
 
       {/* Section Transition */}
-      <div className="absolute bottom-0 left-0 right-0">
+      <div className="absolute -bottom-3 left-0 right-0">
         <svg
-          className="w-full h-12 text-gray-50"
-          viewBox="0 0 1200 60"
+          className="w-full h-20 text-gray-50"
+          viewBox="0 0 1200 100"
           preserveAspectRatio="none"
         >
           <path
-            d="M0,60 L0,30 C80,18 160,42 240,15 C320,0 400,24 480,9 C560,0 640,18 720,6 C800,0 880,15 960,3 C1040,0 1120,9 1200,6 L1200,60 Z"
+            d="M0,100 L0,50 C80,30 160,70 240,25 C320,0 400,40 480,15 C560,0 640,30 720,10 C800,0 880,25 960,5 C1040,0 1120,15 1200,10 L1200,100 Z"
             fill="currentColor"
-            stroke="none"
           />
         </svg>
       </div>

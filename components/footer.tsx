@@ -105,7 +105,7 @@ export function Footer() {
                 viewport={{ once: true }}
               >
                 Diseñador gráfico y desarrollador web especializado en crear 
-                experiencias digitales excepcionales que conectan con los usuarios.
+                experiencias digitales excepcionales para clubes de pádel.
               </motion.p>
 
               {/* Social Links */}

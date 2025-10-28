@@ -128,23 +128,8 @@ export function ContactSection() {
   ];
 
   return (
-    <section id="contacto" ref={ref} className="py-20 bg-gray-50 relative -mt-20 overflow-hidden">
-      {/* Diagonal transition from section 4 - attached to top edge of section 5 */}
-      <div className="absolute -top-0.5 -left-0 right-0 w-screen overflow-hidden">
-        <svg
-          className="w-full h-40 text-black"
-          viewBox="0 0 1200 200"
-          preserveAspectRatio="none"
-          style={{ maxWidth: '100vw' }}
-        >
-          <path
-            d="M0,0 L1200,0 L1200,200 C1000,194 800,188 600,175 C400,150 200,100 0,0 Z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-32">
+    <section id="contacto" ref={ref} className="py-10 bg-gray-50 relative overflow-hidden">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           className="text-center mb-12 md:mb-16 px-4"
@@ -176,7 +161,7 @@ export function ContactSection() {
                 ease: [0.34, 1.56, 0.64, 1]
               }}
             >
-              ¿Empezamos?
+              <span className="text-black">Decide el futuro de tu club</span> <span className="text-blue-600">HOY</span>.
             </motion.span>
           </motion.h2>
           <motion.p 
@@ -189,8 +174,7 @@ export function ContactSection() {
               ease: [0.25, 0.46, 0.45, 0.94]
             }}
           >
-            Tu proyecto merece lo mejor. Con más de 3 años de trayectoria creando experiencias digitales excepcionales, 
-            estoy listo para convertir tu visión en una realidad que supere todas las expectativas.
+            <span className="font-bold">Agenda una demo gratuita</span> y descubre cómo transformar tu club con una web moderna, atractiva y lista <span className="font-bold">en menos de 4 semanas.</span>
           </motion.p>
         </motion.div>
 
@@ -553,7 +537,7 @@ export function ContactSection() {
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
-              Tu visión merece la excelencia
+              Tu club merece destacar.
             </motion.h3>
             <motion.p 
               className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 max-w-3xl mx-auto leading-relaxed"
@@ -565,8 +549,7 @@ export function ContactSection() {
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
-              Trabajemos juntos para hacer realidad tus ideas. Cada gran proyecto 
-              comienza con una simple conversación.
+              Diseñemos juntos una experiencia digital que eleve su imagen, atraiga más jugadores y simplifique la gestión.
             </motion.p>
             <motion.div 
               className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center"

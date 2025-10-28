@@ -2,6 +2,8 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { 
   Palette, 
   Code, 
@@ -13,7 +15,8 @@ import {
   Zap,
   Layers,
   Database,
-  Cpu
+  Cpu,
+  ArrowUpRight
 } from "lucide-react";
 
 interface SkillCategory {
@@ -65,7 +68,7 @@ export function SkillsSection() {
   const isInView = useInView(ref, { once: true, margin: "-200px" });
 
   return (
-    <section id="habilidades" ref={ref} className="py-20 bg-black">
+    <section id="habilidades" ref={ref} className="py-20 bg-[#0f1f3a]" data-disable-magnetic="true">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-32">
         <div className="grid lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-start">
           
@@ -74,41 +77,51 @@ export function SkillsSection() {
             className="lg:col-span-5 flex flex-col justify-center h-full order-2 lg:order-1"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.9, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
           >
             <div className="text-center lg:text-left">
               <motion.span 
-                className="inline-block text-blue-400 text-xs font-light tracking-[0.3em] uppercase mb-4 md:mb-6"
+                className="inline-block text-white text-xs font-light tracking-[0.3em] uppercase mb-4 md:mb-6"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                transition={{ duration: 0.8, delay: 0.5, ease: [0.23, 1, 0.32, 1] }}
               >
-                03 Skills
+                03 DEMO
               </motion.span>
               <div>
                 <motion.h2 
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 md:mb-6"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
+                  transition={{ duration: 0.9, delay: 0.7, ease: [0.23, 1, 0.32, 1] }}
                 >
-                  Mis <motion.span 
-                    className="gradient-text bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 bg-clip-text text-transparent"
-                    initial={{ opacity: 0 }}
-                    animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                    transition={{ duration: 0.6, delay: 0.8 }}
-                  >
-                    Habilidades
-                  </motion.span>
+                  <span className="text-[#D6E826]">Resultados reales</span>{" "}
+                  <span className="text-white">para clubes reales.</span>
                 </motion.h2>
                 <motion.p 
-                  className="text-base sm:text-lg text-gray-300 leading-relaxed max-w-md mx-auto lg:mx-0"
+                  className="text-base sm:text-lg text-gray-300 leading-relaxed max-w-md mx-auto lg:mx-0 mb-6"
                   initial={{ opacity: 0 }}
                   animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ duration: 0.8, delay: 1.0 }}
+                  transition={{ duration: 0.9, delay: 1.0, ease: [0.23, 1, 0.32, 1] }}
                 >
-                  Desde el diseño visual hasta el código que lo hace realidad, cada proyecto es un lienzo en blanco.
+                  Así luce un club de pádel digitalizado al 100%:
+                  moderno, automatizado y preparado para crecer.
                 </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.9, delay: 1.3, ease: [0.23, 1, 0.32, 1] }}
+                >
+                  <Link 
+                    href="/padelnova"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-[#D6E826] text-black px-8 py-4 rounded-xl font-bold hover:bg-[#C6D81F] transition-colors duration-300 shadow-lg hover:shadow-[#D6E826]/50"
+                  >
+                    <ArrowUpRight className="w-5 h-5" />
+                    Ver página de muestra
+                  </Link>
+                </motion.div>
               </div>
             </div>
           </motion.div>
@@ -116,119 +129,21 @@ export function SkillsSection() {
           {/* Right: Skills Column */}
           <motion.div 
             className="lg:col-span-7 order-1 lg:order-2"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+            transition={{ duration: 1.0, delay: 0.5, ease: [0.23, 1, 0.32, 1] }}
           >
-            <div className="space-y-6">
-              {skillCategories.map((category, categoryIndex) => {
-                const CategoryIcon = category.icon;
-                const isUXUI = categoryIndex === 3; // UX/UI box
-                return (
-                  <motion.div
-                    key={categoryIndex}
-                    className={`relative p-3 rounded-lg ${category.gradient} border border-white/10 backdrop-blur-sm ${isUXUI ? 'z-30' : ''} group`}
-                    initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                    animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.9 }}
-                    transition={{ 
-                      duration: 0.8, 
-                      delay: 1.2 + categoryIndex * 0.2,
-                      ease: [0.25, 0.46, 0.45, 0.94]
-                    }}
-                    whileHover={{ 
-                      y: -2,
-                      transition: { 
-                        duration: 0.3,
-                        ease: [0.25, 0.46, 0.45, 0.94]
-                      }
-                    }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    {/* Icon */}
-                    <motion.div 
-                      className={`w-6 h-6 bg-gradient-to-br ${category.color} rounded-md flex items-center justify-center mb-2 shadow-lg`}
-                      initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
-                      animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.5, rotate: -180 }}
-                      transition={{ 
-                        duration: 0.6, 
-                        delay: 1.4 + categoryIndex * 0.2,
-                        ease: [0.34, 1.56, 0.64, 1]
-                      }}
-                      whileHover={{ 
-                        rotate: 5,
-                        transition: { duration: 0.2 }
-                      }}
-                    >
-                      <CategoryIcon className="w-3 h-3 text-white" />
-                    </motion.div>
-
-                    {/* Content */}
-                    <div className="space-y-1">
-                      <motion.h3 
-                        className="text-base font-bold text-white"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                        transition={{ 
-                          duration: 0.6, 
-                          delay: 1.6 + categoryIndex * 0.2,
-                          ease: [0.25, 0.46, 0.45, 0.94]
-                        }}
-                      >
-                        {category.title}
-                      </motion.h3>
-                      <motion.p 
-                        className="text-gray-300 leading-relaxed text-xs"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                        transition={{ 
-                          duration: 0.6, 
-                          delay: 1.8 + categoryIndex * 0.2,
-                          ease: [0.25, 0.46, 0.45, 0.94]
-                        }}
-                      >
-                        {category.description}
-                      </motion.p>
-                      
-                      {/* Skills Tags */}
-                      <div className="flex flex-wrap gap-1 pt-1">
-                        {category.skills.map((skill, skillIndex) => (
-                          <motion.span
-                            key={skillIndex}
-                            className="bg-white/10 text-white/90 px-1.5 py-0.5 rounded-full text-xs font-medium border border-white/20"
-                            initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                            animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 10 }}
-                            transition={{ 
-                              duration: 0.4, 
-                              delay: 2.0 + categoryIndex * 0.2 + skillIndex * 0.1,
-                              ease: [0.25, 0.46, 0.45, 0.94]
-                            }}
-                            whileHover={{ 
-                              backgroundColor: "rgba(255, 255, 255, 0.2)",
-                              transition: { duration: 0.2 }
-                            }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            {skill}
-                          </motion.span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Glow Effect */}
-                    <motion.div 
-                      className={`absolute inset-0 bg-gradient-to-br ${category.color} rounded-lg blur-xl -z-10`}
-                      initial={{ opacity: 0 }}
-                      whileHover={{ 
-                        opacity: 0.2,
-                        scale: 1.05,
-                        transition: { duration: 0.3, ease: "easeOut" }
-                      }}
-                    />
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
+              <Link href="/padelnova" target="_blank" rel="noopener noreferrer">
+                <div className="w-full aspect-[4/3] bg-black rounded-2xl relative overflow-hidden cursor-pointer hover:opacity-90 transition-opacity" style={{ isolation: 'isolate', zIndex: 50 }}>
+                  <Image 
+                    src="/padelnovabox.png" 
+                    alt="Padel Nova Preview"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </Link>
+            </motion.div>
 
         </div>
       </div>

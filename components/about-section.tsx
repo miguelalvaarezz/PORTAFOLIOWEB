@@ -3,24 +3,18 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight, CheckCircle2, Award, Zap } from "lucide-react";
-import Image from "next/image";
+import { ArrowUpRight, Phone, Calendar, Globe, ArrowLeft, ArrowRight, TrendingDown } from "lucide-react";
 
 export function AboutSection() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-200px" });
 
-  const highlights = [
-    { text: "Fast & efficient delivery", color: "bg-green-500" },
-    { text: "Clean, maintainable code", color: "bg-orange-500" },
-    { text: "Modern tech stack", color: "bg-purple-500" }
-  ];
 
   return (
     <section 
       id="sobre-mi" 
       ref={sectionRef}
-      className="relative bg-gray-50 pt-20 pb-32 overflow-hidden"
+      className="relative bg-gray-50 pt-8 pb-12 overflow-hidden"
     >
       {/* Subtle grid */}
       <div className="absolute inset-0 opacity-[0.02]">
@@ -39,224 +33,201 @@ export function AboutSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
           className="mb-16"
         >
-          <span className="text-blue-600 text-xs font-light tracking-[0.3em] uppercase">
-            01 About
+          <span className="text-gray-600 text-xs font-light tracking-[0.3em] uppercase">
+            01 PROBLEMS
           </span>
         </motion.div>
 
-        {/* Main Grid */}
-        <div className="grid lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-start mb-16 md:mb-20">
+        {/* Main Grid - Text only, no image */}
+        <div className="grid lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-center mb-16 md:mb-20">
           
-          {/* Left: Photo + Badge */}
+          {/* Full width content */}
           <motion.div
-            initial={{ opacity: 0, x: -50, scale: 0.9 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
             transition={{ 
-              duration: 1.0, 
-              delay: 0.2,
-              ease: [0.25, 0.46, 0.45, 0.94]
+              duration: 0.9, 
+              delay: 0.3,
+              ease: [0.23, 1, 0.32, 1]
             }}
-            className="lg:col-span-4 space-y-4 md:space-y-6 order-2 lg:order-1"
-          >
-            {/* Photo */}
-            <motion.div 
-              className="relative flex justify-center lg:justify-start"
-              initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
-              transition={{ 
-                duration: 0.8, 
-                delay: 0.4,
-                ease: [0.25, 0.46, 0.45, 0.94]
-              }}
-            >
-              <div className="relative aspect-square w-48 sm:w-56 md:w-64 lg:max-w-[280px] bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl overflow-hidden">
-                <Image
-                  src="/miguelalvarez.webp"
-                  alt="Miguel Álvarez - Diseñador y Desarrollador Web"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-              {/* Subtle accent */}
-              <motion.div 
-                className="absolute -bottom-2 -right-2 md:-bottom-4 md:-right-4 w-16 h-16 md:w-24 md:h-24 bg-blue-600/10 rounded-2xl -z-10"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: 0.8,
-                  ease: [0.34, 1.56, 0.64, 1]
-                }}
-              />
-            </motion.div>
-
-            {/* Status badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: 1.0,
-                ease: [0.34, 1.56, 0.64, 1]
-              }}
-              className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-full mx-auto lg:mx-0"
-            >
-              <motion.div 
-                className="w-2 h-2 bg-green-500 rounded-full"
-                animate={{ 
-                  scale: [1, 1.2, 1],
-                  opacity: [1, 0.7, 1]
-                }}
-                transition={{ 
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              <span className="text-sm text-gray-600 font-medium">Available for work</span>
-            </motion.div>
-          </motion.div>
-
-          {/* Right: Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 50, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
-            transition={{ 
-              duration: 1.0, 
-              delay: 0.4,
-              ease: [0.25, 0.46, 0.45, 0.94]
-            }}
-            className="lg:col-span-8 space-y-6 md:space-y-8 order-1 lg:order-2"
+            className="lg:col-span-12 space-y-6 md:space-y-8 text-center"
           >
             {/* Title */}
             <motion.div 
-              className="space-y-3 md:space-y-4 text-center lg:text-left"
+              className="space-y-3 md:space-y-4 text-center mb-12 md:mb-16"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
               transition={{ 
-                duration: 0.8, 
-                delay: 0.6,
-                ease: [0.25, 0.46, 0.45, 0.94]
+                duration: 0.9, 
+                delay: 0.5,
+                ease: [0.23, 1, 0.32, 1]
               }}
             >
               <motion.h2 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
+                className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
                 transition={{ 
-                  duration: 0.8, 
-                  delay: 0.8,
-                  ease: [0.25, 0.46, 0.45, 0.94]
+                  duration: 0.9, 
+                  delay: 0.7,
+                  ease: [0.23, 1, 0.32, 1]
                 }}
               >
-                Miguel Álvarez
+                <span className="block">El 85% de los clubes de pádel</span>
+                <span className="block text-red-600">pierden tiempo y reservas.</span>
               </motion.h2>
               <motion.p 
-                className="text-lg sm:text-xl md:text-2xl text-gray-600 font-light"
+                className="text-base sm:text-lg md:text-xl text-gray-600 font-light max-w-4xl mx-auto leading-relaxed text-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
                 transition={{ 
-                  duration: 0.8, 
+                  duration: 0.9, 
                   delay: 1.0,
-                  ease: [0.25, 0.46, 0.45, 0.94]
+                  ease: [0.23, 1, 0.32, 1]
                 }}
               >
-                Designer & Developer
+                Eso se traduce en menor ocupación y por lo tanto menor facturación.
               </motion.p>
             </motion.div>
-            
-            {/* Bio */}
-            <motion.p 
-              className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0 text-center lg:text-left"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
-              transition={{ 
-                duration: 1.0, 
-                delay: 1.2,
-                ease: [0.25, 0.46, 0.45, 0.94]
-              }}
-            >
-              Soy un diseñador y desarrollador web autodidacta de 17 años, con más de 3 años de experiencia creando experiencias web vanguardistas, inmersivas y cuidadosamente diseñadas para destacar. <strong>Considero el diseño web como una forma de arte digital:</strong> cada proyecto es una oportunidad para reflejar la identidad, los valores y la esencia de cada empresa. No creo en las páginas genéricas ni en las plantillas. <strong>Creo en diseños hechos desde cero, pensados para aumentar el valor percibido de las marcas y convertir visitantes en clientes reales.</strong> Mi objetivo es simple: transformar ideas en experiencias digitales completas que lleven la experiencia del cliente al siguiente nivel.
-            </motion.p>
 
-            {/* Highlights */}
-            <motion.div 
-              className="space-y-4 md:space-y-6"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: 1.4,
-                ease: [0.25, 0.46, 0.45, 0.94]
-              }}
-            >
-              {highlights.map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -30, scale: 0.9 }}
-                  animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
-                  transition={{ 
-                    duration: 0.6, 
-                    delay: 1.6 + i * 0.1,
-                    ease: [0.25, 0.46, 0.45, 0.94]
-                  }}
-                  className="w-full sm:w-1/2 space-y-2 mx-auto lg:mx-0 lg:ml-4"
-                >
-                  <div className="text-center lg:text-right">
-                    <span className="text-sm font-medium text-gray-700">{item.text}</span>
-                  </div>
-                  <motion.div 
-                    className={`w-full h-1 ${item.color} rounded-full`}
-                    initial={{ scaleX: 0 }}
-                    animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-                    transition={{ 
-                      duration: 0.8, 
-                      delay: 1.8 + i * 0.1,
-                      ease: [0.25, 0.46, 0.45, 0.94]
-                    }}
-                    style={{ originX: 0 }}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
-              transition={{ 
-                duration: 0.8, 
-                delay: 2.0,
-                ease: [0.34, 1.56, 0.64, 1]
-              }}
-              className="pt-4 flex justify-center lg:justify-start"
-            >
+            {/* Problem Cards */}
+            <div className="grid md:grid-cols-3 gap-8 md:gap-10 mt-16 md:mt-24">
+              {/* Card 1: Reservas Manuales */}
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{ duration: 0.9, delay: 1.4, ease: [0.23, 1, 0.32, 1] }}
+                whileHover={{ y: -12 }}
+                className="relative group cursor-pointer"
               >
-                <Button
-                  onClick={() => {
-                    const contactElement = document.getElementById('contacto');
-                    if (contactElement) {
-                      contactElement.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'start' 
-                      });
-                    }
-                  }}
-                  size="lg"
-                  data-cursor-magnetic
-                  className="group bg-blue-600 hover:bg-blue-700 text-white font-medium h-12 px-6"
-                >
-                  Let's work together
-                  <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </Button>
+                {/* Glow effect */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-gray-400 via-gray-500 to-gray-400 rounded-3xl opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500" />
+                
+                <div className="relative bg-white rounded-3xl p-10 border border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-500 h-full flex flex-col">
+                  {/* Icon container with advanced styling */}
+                  <div className="relative mb-8">
+                    <div className="absolute -top-2 -left-2 w-20 h-20 bg-transparent rounded-2xl" />
+                    <div className="relative w-16 h-16 bg-white border-2 border-gray-300 rounded-2xl flex items-center justify-center transform group-hover:scale-105 group-hover:rotate-2 transition-all duration-300">
+                      <Phone className="w-8 h-8 text-red-600" />
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-grow">
+                    <h3 className="text-xl md:text-2xl font-black text-gray-900 mb-4 leading-tight">
+                      Reservas manuales = pérdida de tiempo
+                    </h3>
+                    <p className="text-base text-gray-600 leading-relaxed font-light">
+                      Horas de gestión que podrías dedicar a mejorar tu club.
+                    </p>
+                  </div>
+                  
+                  {/* Decorative element */}
+                  <div className="mt-6 h-1 w-20 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full group-hover:w-32 transition-all duration-500" />
+                </div>
               </motion.div>
+
+              {/* Card 2: Web Anticuada */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{ duration: 0.9, delay: 1.6, ease: [0.23, 1, 0.32, 1] }}
+                whileHover={{ y: -12 }}
+                className="relative group cursor-pointer"
+              >
+                {/* Glow effect */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-gray-400 via-gray-500 to-gray-400 rounded-3xl opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500" />
+                
+                <div className="relative bg-white rounded-3xl p-10 border border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-500 h-full flex flex-col">
+                  {/* Icon container with advanced styling */}
+                  <div className="relative mb-8">
+                    <div className="absolute -top-2 -left-2 w-20 h-20 bg-transparent rounded-2xl" />
+                    <div className="relative w-16 h-16 bg-white border-2 border-gray-300 rounded-2xl flex items-center justify-center transform group-hover:scale-105 group-hover:rotate-2 transition-all duration-300">
+                      <Globe className="w-8 h-8 text-red-600" />
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-grow">
+                    <h3 className="text-xl md:text-2xl font-black text-gray-900 mb-4 leading-tight">
+                      Web anticuada que no genera confianza
+                    </h3>
+                    <p className="text-base text-gray-600 leading-relaxed font-light">
+                      Tu club se ve menos profesional de lo que realmente es.
+                    </p>
+                  </div>
+                  
+                  {/* Decorative element */}
+                  <div className="mt-6 h-1 w-20 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full group-hover:w-32 transition-all duration-500" />
+                </div>
+              </motion.div>
+
+              {/* Card 3: Torneos */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{ duration: 0.9, delay: 1.8, ease: [0.23, 1, 0.32, 1] }}
+                whileHover={{ y: -12 }}
+                className="relative group cursor-pointer"
+              >
+                {/* Glow effect */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-gray-400 via-gray-500 to-gray-400 rounded-3xl opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500" />
+                
+                <div className="relative bg-white rounded-3xl p-10 border border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-500 h-full flex flex-col">
+                  {/* Icon container with advanced styling */}
+                  <div className="relative mb-8">
+                    <div className="absolute -top-2 -left-2 w-20 h-20 bg-transparent rounded-2xl" />
+                    <div className="relative w-16 h-16 bg-white border-2 border-gray-300 rounded-2xl flex items-center justify-center transform group-hover:scale-105 group-hover:rotate-2 transition-all duration-300">
+                      <Calendar className="w-8 h-8 text-red-600" />
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-grow">
+                    <h3 className="text-xl md:text-2xl font-black text-gray-900 mb-4 leading-tight">
+                      Torneos difíciles de organizar
+                    </h3>
+                    <p className="text-base text-gray-600 leading-relaxed font-light">
+                      Listas confusas, inscripciones por mensajes y caos en los resultados.
+                    </p>
+                  </div>
+                  
+                  {/* Decorative element */}
+                  <div className="mt-6 h-1 w-20 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full group-hover:w-32 transition-all duration-500" />
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Result Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.8, delay: 1.8 }}
+              className="w-full mt-16 md:mt-20"
+            >
+              <div className="relative max-w-lg mx-auto">
+                <p className="text-sm md:text-base text-gray-900 font-black text-right mb-2">
+                  &gt; Facturación
+                </p>
+                <div className="relative w-full">
+                  <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+                    <div className="bg-red-500 h-full rounded-full" style={{ width: '20%' }} />
+                  </div>
+                  {/* Viñeta con 20% */}
+                  <div className="absolute top-full left-[20%] -translate-x-1/2 translate-y-2">
+                    {/* Puntero hacia arriba */}
+                    <div className="absolute left-1/2 bottom-full transform -translate-x-1/2">
+                      <div className="w-0 h-0 border-l-[4px] border-r-[4px] border-b-[4px] border-l-transparent border-r-transparent border-b-red-500" />
+                    </div>
+                    <div className="bg-red-500 text-white text-xs font-black px-2 py-1 rounded-full whitespace-nowrap mt-1">
+                      20%
+                    </div>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         </div>
@@ -264,7 +235,7 @@ export function AboutSection() {
       </div>
 
       {/* Section Transition - Inverted */}
-      <div className="absolute bottom-0 left-0 right-0">
+      <div className="absolute -bottom-5 left-0 right-0">
         <svg
           className="w-full h-20 text-blue-800"
           viewBox="0 0 1200 100"

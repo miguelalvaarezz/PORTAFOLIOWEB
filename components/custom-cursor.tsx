@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
+import Image from "next/image";
 
 export function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -70,7 +71,14 @@ export function CustomCursor() {
   const handleMouseMove = useCallback((e: MouseEvent) => {
     updateMousePosition(e);
     
-    if (hoveredElementRef.current) {
+    // Check if mouse is over a section with disabled magnetic effect
+    const target = e.target as HTMLElement;
+    const isInDisabledSection = target.closest('[data-disable-magnetic="true"]');
+    
+    if (isInDisabledSection) {
+      // Disable magnetic effect - just follow cursor
+      setMagneticPosition({ x: e.clientX, y: e.clientY });
+    } else if (hoveredElementRef.current) {
       const magneticPos = calculateMagneticEffect(
         hoveredElementRef.current, 
         e.clientX, 
@@ -184,31 +192,46 @@ export function CustomCursor() {
 
   return (
     <>
-      {/* Main cursor */}
+      {/* Main cursor - Tennis ball SVG */}
       <div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-[9999]"
         style={{
-          transform: `translate(${magneticPosition.x - 8}px, ${magneticPosition.y - 8}px)`,
+          transform: `translate(${magneticPosition.x - 16}px, ${magneticPosition.y - 16}px)`,
         }}
       >
         <div
-          className={`w-4 h-4 rounded-full bg-white transition-all duration-200 ease-out ${
-            isHovering ? "scale-150 bg-blue-500" : "scale-100"
+          className={`transition-all duration-200 ease-out ${
+            isHovering ? "scale-150" : "scale-100"
           }`}
-        />
+          style={{
+            width: '32px',
+            height: '32px',
+          }}
+        >
+          <Image
+            src="/tenis.svg"
+            alt="Tennis ball cursor"
+            width={32}
+            height={32}
+            className="drop-shadow-lg"
+            priority
+            unoptimized
+          />
+        </div>
       </div>
 
-      {/* Cursor trail */}
+      {/* Cursor trail - subtle shadow */}
       <div
-        className="fixed top-0 left-0 pointer-events-none z-[9998] mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-[9998]"
         style={{
-          transform: `translate(${mousePosition.x - 12}px, ${mousePosition.y - 12}px)`,
+          transform: `translate(${mousePosition.x - 15}px, ${mousePosition.y - 15}px)`,
         }}
       >
         <div
-          className={`w-6 h-6 rounded-full border-2 border-white transition-all duration-300 ease-out ${
-            isHovering ? "scale-200 border-blue-500" : "scale-100"
-          }`}
+          className="w-7 h-7 rounded-full transition-all duration-300 ease-out bg-yellow-500/5"
+          style={{
+            filter: 'blur(4px)',
+          }}
         />
       </div>
 

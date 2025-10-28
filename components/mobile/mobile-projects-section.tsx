@@ -2,416 +2,393 @@
 
 import { motion, useInView } from "framer-motion";
 import { useState, useRef } from "react";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import { 
-  ExternalLink, 
-  Github, 
-  Code, 
-  Palette,
   ArrowUpRight,
-  PaintbrushIcon,
-  Zap,
+  Calendar,
+  Code,
+  Users,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Clock
 } from "lucide-react";
-
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  category: "web" | "design" | "fullstack";
-  technologies: string[];
-  featured: boolean;
-}
-
-const projects: Project[] = [
-  {
-    id: "1",
-    title: "DunkRelief - Ecommerce Internacional",
-    description: "Plataforma de comercio electrónico con diseño moderno y optimizado al máximo para la conversión de visitantes. Uso de elementos creativos y visualmente atractivos para la presentación del producto. Conectada a pasarela de pago y funcionalidades tales como carrito, promociones, pop-ups, etc.",
-    category: "fullstack",
-    technologies: ["Next.js", "TypeScript", "Stripe"],
-    featured: true,
-  },
-  {
-    id: "2",
-    title: "🧩 NextCheck — Software clínico 360",
-    description: "Software personalizado con la estructura completa de una clínica fisioterapeuta, dedicado al registro de datos y automatizacion de tareas ( registro de pacientes, recordatorios de citas, agenda, historiales clínicos, evalución de progreso, etc.). Todo empaquetado en una interfaz altamente interactiva y moderna.",
-    category: "web",
-    technologies: ["Diseño UX/UI", "Desarrollo Frontend", "Desarrollo Backend"],
-    featured: true,
-  },
-  {
-    id: "3",
-    title: "VALENZO - Diseño de marca",
-    description: "Identidad visual completa para lanzamiento de una marca privada de lujo. Transformando un concepto en un diseño que refleja los valores y esencia de la marca. Así como transmite un sentimiento de exclusividad y alto status entre los seleccionados para adquirir su línea de producto.",
-    category: "design",
-    technologies: ["Illustrator", "Photoshop", "Procreate"],
-    featured: true,
-  },
-];
 
 export function MobileProjectsSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-200px" });
-  const [expandedText, setExpandedText] = useState<{[key: string]: boolean}>({});
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [expandedDescriptions, setExpandedDescriptions] = useState({
+    reservas: false,
+    web: false,
+    torneos: false,
+  });
 
-  const toggleTextExpansion = (projectId: string) => {
-    setExpandedText(prev => ({
+  const toggleDescriptionExpansion = (key: string) => {
+    setExpandedDescriptions(prev => ({
       ...prev,
-      [projectId]: !prev[projectId]
+      [key]: !prev[key as keyof typeof prev]
     }));
   };
 
   return (
-    <section id="proyectos-mobile" ref={ref} className="relative pt-12 pb-8 bg-blue-800 overflow-hidden px-4">
-      {/* Subtle Pattern Overlay */}
+    <section 
+      id="proyectos" 
+      ref={ref} 
+      className="relative py-20 bg-black px-4 overflow-hidden"
+    >
+      {/* Background decoration */}
       <div className="absolute inset-0 opacity-5">
-        <div 
-          className="w-full h-full"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)',
-            backgroundSize: '80px 80px'
-          }}
-        />
+        <div className="absolute top-20 left-20 w-64 h-64 bg-blue-500 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-48 h-48 bg-[#D6E826] rounded-full blur-3xl"></div>
       </div>
 
-      {/* Glow Orbs */}
-      <motion.div
-        className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-[120px]"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-400/20 rounded-full blur-[120px]"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.5, 0.3, 0.5],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      <div className="relative max-w-sm mx-auto">
+      <div className="relative max-w-lg mx-auto">
         
         {/* Header */}
         <motion.div
-          className="text-center mb-12 px-4"
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ 
-            duration: 0.8, 
-            delay: 0.2,
-            ease: [0.25, 0.46, 0.45, 0.94]
+            duration: 0.9, 
+            delay: 0.3,
+            ease: [0.23, 1, 0.32, 1]
           }}
         >
           <motion.span 
-            className="inline-block text-blue-200 text-xs font-light tracking-[0.3em] uppercase mb-6"
+            className="inline-block text-[#D6E826] text-xs font-light tracking-[0.3em] uppercase mb-4"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.23, 1, 0.32, 1] }}
+          >
+            02 Soluciones
+          </motion.span>
+          <motion.h2 
+            className="text-2xl sm:text-3xl font-black mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ 
-              duration: 0.6, 
-              delay: 0.4,
-              ease: [0.25, 0.46, 0.45, 0.94]
+              duration: 0.9, 
+              delay: 0.7,
+              ease: [0.23, 1, 0.32, 1]
             }}
           >
-            02 Proyectos
-          </motion.span>
-
-          <motion.h2 
-            className="text-2xl sm:text-3xl font-black leading-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ 
-              duration: 0.8, 
-              delay: 0.6,
-              ease: [0.25, 0.46, 0.45, 0.94]
-            }}
-          >
-            <motion.span 
-              className="text-white"
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: 0.8,
-                ease: [0.25, 0.46, 0.45, 0.94]
-              }}
-            >
-              Proyectos
-            </motion.span>{" "}
-            <motion.span 
-              className="relative inline-block text-white/40 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]"
-              initial={{ opacity: 0, x: 20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: 1.0,
-                ease: [0.25, 0.46, 0.45, 0.94]
-              }}
-            >
-              Destacados
-              <motion.span 
-                className="absolute -bottom-2 left-1/2 right-0 h-1 bg-white/70 rounded-sm -z-10"
-                initial={{ scaleX: 0 }}
-                animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: 1.2,
-                  ease: [0.25, 0.46, 0.45, 0.94]
-                }}
-                style={{ originX: 0 }}
-              />
-            </motion.span>
+            <span className="text-white">Sistemas completos</span>
+            <Image 
+              src="/arrow-decorative.svg" 
+              alt="Arrow"
+              width={80}
+              height={24}
+              className="inline-block -mt-8 ml-2"
+            />
           </motion.h2>
         </motion.div>
 
         {/* Badges */}
         <motion.div
-          className="space-y-3 mb-8 px-4"
+          className="flex flex-col gap-3 mb-8"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ 
-            duration: 0.6, 
+            duration: 0.9, 
             delay: 1.4,
-            ease: [0.25, 0.46, 0.45, 0.94]
+            ease: [0.23, 1, 0.32, 1]
           }}
         >
-          {/* First Row - UX and Optimización */}
-          <motion.div
-            className="flex justify-center gap-3"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ 
-              duration: 0.4, 
-              delay: 1.6,
-              ease: [0.34, 1.56, 0.64, 1]
-            }}
-          >
+          {[
+            { text: "Aumenta tus reservas", icon: Calendar },
+            { text: "Reduce tu tiempo de gestión", icon: Clock }, 
+            { text: "Atrae nuevos jugadores", icon: Users }
+          ].map((badge, i) => (
             <motion.div
-              className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white text-xs font-medium"
+              key={i}
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 20 }}
+              transition={{ 
+                duration: 0.6, 
+                delay: 1.6 + i * 0.1,
+                ease: [0.34, 1.56, 0.64, 1]
+              }}
+              className="flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white text-sm font-medium"
             >
-              <PaintbrushIcon className="w-3 h-3" />
-              UX/UI Personalizado
+              <badge.icon className="w-4 h-4" />
+              {badge.text}
             </motion.div>
-            <motion.div
-              className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white text-xs font-medium"
-            >
-              <Zap className="w-3 h-3" />
-              Optimización Web
-            </motion.div>
-          </motion.div>
-
-          {/* Second Row - Desarrollo centered */}
-          <motion.div
-            className="flex justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ 
-              duration: 0.4, 
-              delay: 1.8,
-              ease: [0.34, 1.56, 0.64, 1]
-            }}
-          >
-            <motion.div
-              className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white text-xs font-medium"
-            >
-              <Code className="w-3 h-3" />
-              Desarrollo de sistemas/APIs
-            </motion.div>
-          </motion.div>
+          ))}
         </motion.div>
 
-        {/* Projects List - Simple Stack */}
-        <motion.div 
-          className="space-y-6 mb-16 px-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ 
-            duration: 0.6, 
-            delay: 1.8,
-            ease: [0.25, 0.46, 0.45, 0.94]
-          }}
-        >
-          {projects.map((project, index) => {
-            const blockRef = useRef(null);
-            const blockIsInView = useInView(blockRef, { once: true, margin: "-50px" });
+        {/* Services Blocks */}
+        <div className="space-y-6">
+          {/* Block 1: Reservas */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            transition={{ duration: 0.9, delay: 0.6, ease: [0.23, 1, 0.32, 1] }}
+            className="relative group bg-gradient-to-br from-gray-50 to-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
+          >
+            {/* Background Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#D6E826]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
-            return (
-              <motion.div
-                key={project.id}
-                ref={blockRef}
-                className={`relative ${project.id === "3" ? 'z-10' : ''}`}
-                initial={{ opacity: 0, y: 60 }}
-                animate={blockIsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.2 + index * 0.1,
-                  ease: [0.25, 0.46, 0.45, 0.94]
-                }}
-              >
-                {/* Card */}
-                <div className={`relative bg-white rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 ${
-                  expandedText[project.id] 
-                    ? 'h-auto min-h-[500px]' 
-                    : project.id === "2" 
-                      ? 'h-[480px]'  // NextCheck - más alto por descripción larga
-                      : project.id === "3" 
-                        ? 'h-[420px]'  // VALENZO - altura reducida cuando contraído
-                        : project.id === "1" 
-                          ? 'h-[460px]'  // DunkRelief - descripción media
-                          : 'h-[420px]'  // Otros proyectos - altura estándar
-                }`}>
-                  {/* Image Area */}
-                  <div className="relative bg-gradient-to-br from-blue-50 to-blue-100 overflow-hidden h-[200px]">
-                    {project.id === "2" ? (
-                      // Dashboard Analytics - Show NC image
-                      <Image
-                        src="/NC.webp"
-                        alt="Dashboard Analytics"
-                        width={400}
-                        height={0}
-                        className="w-full h-auto"
-                      />
-                    ) : project.id === "3" ? (
-                      // Brand Identity - Show valenzo image
-                      <Image
-                        src="/valenzo.webp"
-                        alt="Brand Identity - Valenzo"
-                        fill
-                        className="object-cover"
-                      />
-                    ) : project.id === "1" ? (
-                      // E-Commerce Moderno - Show dunkrelief video
-                      <video
-                        src="/dunkrelief.mov"
-                        className="w-full h-auto"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                      />
-                    ) : (
-                      // Other projects - Show icon
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-blue-300">
-                          {project.category === "design" ? (
-                            <Palette className="w-16 h-16" />
-                          ) : project.category === "fullstack" ? (
-                            <Code className="w-16 h-16" />
-                          ) : (
-                            <Code className="w-16 h-16" />
-                          )}
-                        </div>
-                      </div>
-                    )}
+            {/* Image Placeholder - Full Width */}
+            <div className="relative w-full h-48">
+              <Image
+                src="/sistemareservas.png"
+                alt="Sistema de Reservas"
+                fill
+                className="object-cover"
+              />
+              {/* Badge on top of image */}
+              <div className="absolute top-3 left-3">
+                <span className="inline-flex items-center gap-2 bg-[#D6E826]/20 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-full font-bold text-xs uppercase tracking-wider shadow-lg">
+                  <Calendar className="w-3 h-3 text-[#D6E826]" />
+                  Sistema de Reservas
+                </span>
+              </div>
+            </div>
+            
+            {/* Content */}
+            <div className="relative p-6">
+              {/* Title */}
+              <h3 className="text-xl font-black mb-3 leading-tight">
+                <span className="text-[#D6E826]">1.</span> <span className="text-[#D6E826]">Reservas online</span> sin complicaciones
+              </h3>
+              
+              {/* Description */}
+              <div className="relative mb-4">
+                <p className={`text-sm text-gray-600 leading-relaxed transition-all duration-300 ${expandedDescriptions['reservas'] ? '' : 'line-clamp-3'}`}>
+                  Tus jugadores <span className="font-bold">reservan pista en segundos, pagan online y reciben confirmación automática</span>. Olvídate de los mensajes, errores o dobles reservas.
+                </p>
+                {!expandedDescriptions['reservas'] && (
+                  <div className="absolute bottom-0 left-0 right-0 h-full flex items-end justify-center pb-1">
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
+                    <button
+                      onClick={() => toggleDescriptionExpansion('reservas')}
+                      className="text-[#D6E826] hover:text-[#C6D81F] transition-colors duration-200 relative z-10"
+                    >
+                      <ChevronDown className="w-5 h-5" />
+                    </button>
                   </div>
-
-                  {/* Content */}
-                  <div className={`p-6 ${project.id === "3" && !expandedText[project.id] ? 'pb-4' : 'pb-6'}`}>
-                    <h3 className="text-xl font-bold mb-3 text-gray-900">
-                      {project.title}
-                    </h3>
-                    <div className="mb-4 leading-relaxed text-sm text-gray-600">
-                      <div className="relative">
-                        <p className={`transition-all duration-300 ${
-                          expandedText[project.id] ? '' : 'line-clamp-2'
-                        }`}>
-                          {project.description}
-                        </p>
-                        {!expandedText[project.id] && (
-                          <div className="relative">
-                            {/* Gradiente difuminado */}
-                            <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent pointer-events-none" />
-                            {/* Botón para expandir */}
-                            <button
-                              onClick={() => toggleTextExpansion(project.id)}
-                              className="absolute bottom-0 right-0 text-blue-600 hover:text-blue-800 bg-white p-1 rounded-full shadow-sm hover:shadow-md transition-all duration-200"
-                            >
-                              <ChevronDown className="w-4 h-4" />
-                            </button>
-                          </div>
-                        )}
-                        {expandedText[project.id] && (
-                          <button
-                            onClick={() => toggleTextExpansion(project.id)}
-                            className="text-blue-600 hover:text-blue-800 mt-2 transition-colors duration-200"
-                          >
-                            <ChevronUp className="w-4 h-4" />
-                          </button>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.technologies.map((tech, i) => (
-                        <span
-                          key={i}
-                          className="bg-blue-50 text-blue-700 text-xs font-medium px-3 py-1 rounded-full"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Buttons */}
-                    <div className="flex gap-3">
-                      <Button
-                        size="sm"
-                        className="flex-1 bg-blue-800 text-white hover:bg-blue-900 group"
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Ver Proyecto
-                      </Button>
-                      <Button
-                        size="sm"
-                        className="bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-100"
-                      >
-                        <Github className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
+                )}
+                {expandedDescriptions['reservas'] && (
+                  <button
+                    onClick={() => toggleDescriptionExpansion('reservas')}
+                    className="text-[#D6E826] hover:text-[#C6D81F] font-medium text-xs mt-2 transition-colors duration-200 flex items-center gap-1"
+                  >
+                    Leer menos
+                    <ChevronUp className="w-3 h-3" />
+                  </button>
+                )}
+              </div>
+              
+              {/* Features */}
+              <div className="space-y-2 mb-4">
+                <div className="flex items-start gap-2">
+                  <div className="mt-1 w-1 h-1 rounded-full bg-[#D6E826]" />
+                  <span className="text-xs text-gray-600">Confirmación automática instantánea</span>
                 </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                <div className="flex items-start gap-2">
+                  <div className="mt-1 w-1 h-1 rounded-full bg-[#D6E826]" />
+                  <span className="text-xs text-gray-600">Pago online integrado</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <div className="mt-1 w-1 h-1 rounded-full bg-[#D6E826]" />
+                  <span className="text-xs text-gray-600">Eliminación de errores</span>
+                </div>
+              </div>
+              
+              {/* Button */}
+              <Link href="/sistemareservas" className="w-full bg-[#D6E826] text-gray-900 hover:bg-[#C6D81F] font-bold py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2">
+                <ArrowUpRight className="w-4 h-4" />
+                Ver sistema de reservas
+              </Link>
+            </div>
+          </motion.div>
 
-               {/* CTA - Hidden */}
-               <motion.div
-                 className="text-center relative z-20 hidden"
-                 initial={{ opacity: 0, y: 30 }}
-                 animate={{ opacity: 1, y: 0 }}
-                 transition={{ duration: 0.8, delay: 1 }}
-               >
-                 <Button
-                   size="lg"
-                   className="group bg-white text-blue-800 hover:bg-blue-50 font-semibold px-10 h-14 text-base shadow-2xl hover:shadow-white/30 transition-all duration-300"
-                 >
-                   Ver Todos los Proyectos
-                   <ArrowUpRight className="w-5 h-5 ml-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                 </Button>
-               </motion.div>
+          {/* Block 2: Web Premium */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            transition={{ duration: 0.9, delay: 1.0, ease: [0.23, 1, 0.32, 1] }}
+            className="relative group bg-gradient-to-br from-gray-50 to-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
+          >
+            {/* Background Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            {/* Image */}
+            <div className="relative w-full h-48">
+              <Image
+                src="/DWP.png"
+                alt="Diseño Web Premium"
+                fill
+                className="object-cover"
+              />
+              {/* Badge on top of image */}
+              <div className="absolute top-3 left-3">
+                <span className="inline-flex items-center gap-2 bg-blue-500/20 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-full font-bold text-xs uppercase tracking-wider shadow-lg">
+                  <Code className="w-3 h-3 text-blue-600" />
+                  Web Avanzada
+                </span>
+              </div>
+            </div>
+            
+            {/* Content */}
+            <div className="relative p-6">
+              {/* Title */}
+              <h3 className="text-xl font-black mb-3 leading-tight">
+                <span className="text-blue-600">2.</span> <span className="text-blue-600">Diseño web premium</span> para tu club
+              </h3>
+              
+              {/* Description */}
+              <div className="relative mb-4">
+                <p className={`text-sm text-gray-600 leading-relaxed transition-all duration-300 ${expandedDescriptions['web'] ? '' : 'line-clamp-3'}`}>
+                  Una web atractiva, rápida y optimizada para SEO, que refleja la <span className="font-bold">calidad de tu club y atrae nuevos jugadores</span>.
+                </p>
+                {!expandedDescriptions['web'] && (
+                  <div className="absolute bottom-0 left-0 right-0 h-full flex items-end justify-center pb-1">
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
+                    <button
+                      onClick={() => toggleDescriptionExpansion('web')}
+                      className="text-blue-600 hover:text-blue-700 transition-colors duration-200 relative z-10"
+                    >
+                      <ChevronDown className="w-5 h-5" />
+                    </button>
+                  </div>
+                )}
+                {expandedDescriptions['web'] && (
+                  <button
+                    onClick={() => toggleDescriptionExpansion('web')}
+                    className="text-blue-600 hover:text-blue-700 font-medium text-xs mt-2 transition-colors duration-200 flex items-center gap-1"
+                  >
+                    Leer menos
+                    <ChevronUp className="w-3 h-3" />
+                  </button>
+                )}
+              </div>
+              
+              {/* Features */}
+              <div className="space-y-2 mb-4">
+                <div className="flex items-start gap-2">
+                  <div className="mt-1 w-1 h-1 rounded-full bg-blue-600" />
+                  <span className="text-xs text-gray-600">Diseño moderno y atractivo</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <div className="mt-1 w-1 h-1 rounded-full bg-blue-600" />
+                  <span className="text-xs text-gray-600">Optimización SEO completa</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <div className="mt-1 w-1 h-1 rounded-full bg-blue-600" />
+                  <span className="text-xs text-gray-600">Alta velocidad</span>
+                </div>
+              </div>
+              
+              {/* Button */}
+              <Link href="/padelnova" target="_blank" rel="noopener noreferrer" className="w-full bg-blue-600 text-white hover:bg-blue-700 font-bold py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2">
+                <ArrowUpRight className="w-4 h-4" />
+                Ver web premium
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Block 3: Torneos */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            transition={{ duration: 0.9, delay: 1.4, ease: [0.23, 1, 0.32, 1] }}
+            className="relative group bg-gradient-to-br from-gray-50 to-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
+          >
+            {/* Background Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#EF4444]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            {/* Image */}
+            <div className="relative w-full h-48">
+              <Image
+                src="/sistematorneos.png"
+                alt="Sistema de Torneos"
+                fill
+                className="object-cover"
+              />
+              {/* Badge */}
+              <div className="absolute top-3 left-3">
+                <span className="inline-flex items-center gap-2 bg-[#EF4444]/20 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-full font-bold text-xs uppercase tracking-wider shadow-lg">
+                  <Users className="w-3 h-3 text-[#EF4444]" />
+                  Sistema de Torneos
+                </span>
+              </div>
+            </div>
+            
+            {/* Content */}
+            <div className="relative p-6">
+              {/* Title */}
+              <h3 className="text-xl font-black mb-3 leading-tight">
+                <span className="text-[#EF4444]">3.</span> <span className="text-[#EF4444]">Organiza torneos</span> fácilmente
+              </h3>
+              
+              {/* Description */}
+              <div className="relative mb-4">
+                <p className={`text-sm text-gray-600 leading-relaxed transition-all duration-300 ${expandedDescriptions['torneos'] ? '' : 'line-clamp-3'}`}>
+                  Publica torneos, gestiona inscripciones y muestra resultados en tiempo real. <span className="font-bold">Todo desde un panel central</span>, sin hojas de Excel ni caos.
+                </p>
+                {!expandedDescriptions['torneos'] && (
+                  <div className="absolute bottom-0 left-0 right-0 h-full flex items-end justify-center pb-1">
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
+                    <button
+                      onClick={() => toggleDescriptionExpansion('torneos')}
+                      className="text-[#EF4444] hover:text-red-700 transition-colors duration-200 relative z-10"
+                    >
+                      <ChevronDown className="w-5 h-5" />
+                    </button>
+                  </div>
+                )}
+                {expandedDescriptions['torneos'] && (
+                  <button
+                    onClick={() => toggleDescriptionExpansion('torneos')}
+                    className="text-[#EF4444] hover:text-red-700 font-medium text-xs mt-2 transition-colors duration-200 flex items-center gap-1"
+                  >
+                    Leer menos
+                    <ChevronUp className="w-3 h-3" />
+                  </button>
+                )}
+              </div>
+              
+              {/* Features */}
+              <div className="space-y-2 mb-4">
+                <div className="flex items-start gap-2">
+                  <div className="mt-1 w-1 h-1 rounded-full bg-[#EF4444]" />
+                  <span className="text-xs text-gray-600">Inscripciones online automatizadas</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <div className="mt-1 w-1 h-1 rounded-full bg-[#EF4444]" />
+                  <span className="text-xs text-gray-600">Resultados en tiempo real</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <div className="mt-1 w-1 h-1 rounded-full bg-[#EF4444]" />
+                  <span className="text-xs text-gray-600">Panel de control centralizado</span>
+                </div>
+              </div>
+              
+              {/* Button */}
+              <Link href="/sistematorneos" className="w-full bg-[#EF4444] text-white hover:bg-red-600 font-bold py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2">
+                <ArrowUpRight className="w-4 h-4" />
+                Ver sistema de torneos
+              </Link>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Diagonal curvature connecting to section 4 */}
-      <div className="absolute bottom-0 left-0 right-0">
+      <div className="absolute -bottom-0.5 left-0 right-0">
         <svg
-          className="w-full h-40 text-black"
-          viewBox="0 0 1200 200"
+          className="w-full h-32 text-[#0f1f3a]"
+          viewBox="0 0 1200 160"
           preserveAspectRatio="none"
         >
           <path
-            d="M0,200 L0,0 C150,20 300,10 450,30 C600,50 750,40 900,60 C1050,80 1150,120 1200,200 L1200,200 Z"
+            d="M0,160 L0,0 C200,10 400,20 600,40 C800,80 1000,140 1200,160 L1200,160 Z"
             fill="currentColor"
           />
         </svg>
       </div>
-
     </section>
   );
 }
