@@ -16,7 +16,7 @@ Portafolio profesional de Miguel Álvarez, diseñador gráfico y desarrollador w
 - **Styling**: Tailwind CSS
 - **Animaciones**: Framer Motion
 - **Iconos**: Lucide React
-- **Formularios**: EmailJS
+- **Formularios**: Telegram Bot (notificaciones push)
 - **Deployment**: Vercel, Netlify, IONOS
 
 ## 📁 Estructura del Proyecto
@@ -53,6 +53,7 @@ Portafolio profesional de Miguel Álvarez, diseñador gráfico y desarrollador w
 ### Prerrequisitos
 - Node.js 18+ 
 - npm o yarn
+- Cuenta de Telegram (para el bot de notificaciones)
 
 ### Instalación
 ```bash
@@ -62,9 +63,35 @@ git clone https://github.com/tu-usuario/portafolio-web.git
 # Instalar dependencias
 npm install
 
+# Crear archivo de variables de entorno
+# Sigue las instrucciones en TELEGRAM_SETUP.md para configurar el bot
+# Crea un archivo .env.local con tus credenciales de Telegram
+
 # Ejecutar en desarrollo
 npm run dev
 ```
+
+### ⚠️ Configuración de Telegram Bot (OBLIGATORIO)
+
+Para que el formulario de contacto funcione, debes configurar Telegram Bot:
+
+1. **Crear un bot con @BotFather** en Telegram
+2. **Obtener tu Chat ID** usando @userinfobot
+3. **Crear un archivo `.env.local`** con:
+```env
+NEXT_PUBLIC_TELEGRAM_BOT_TOKEN=tu_bot_token
+NEXT_PUBLIC_TELEGRAM_CHAT_ID=tu_chat_id
+```
+
+📖 **Guía completa**: Ver `TELEGRAM_SETUP.md`
+
+**Ventajas de Telegram:**
+- ✅ Notificaciones instantáneas en tu teléfono
+- ✅ Totalmente gratis
+- ✅ No requiere servidor backend
+- ✅ Muy fácil de configurar (5 minutos)
+
+⚠️ **SIN estas variables, el formulario NO funcionará.**
 
 ### Scripts Disponibles
 ```bash
@@ -107,7 +134,7 @@ npm run type-check   # Verificación de tipos
 
 ## 📞 Contacto
 
-- **Email**: miguel@ejemplo.com
+- **Email**: info@miguelalvarezweb.com
 - **Teléfono**: +34 695 537 321
 - **Ubicación**: Lanzarote, España
 - **LinkedIn**: [Miguel Álvarez](https://linkedin.com/in/miguelalvarez)

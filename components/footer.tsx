@@ -23,7 +23,7 @@ export function Footer() {
   const whatsAppUrl = `https://wa.me/34695537321?text=${whatsAppMessage}`;
 
   const socialLinks = [
-    { icon: Mail, href: "mailto:miguelalvaarezz@gmail.com", label: "Email", color: "hover:text-red-400" },
+    { icon: Mail, href: "mailto:info@miguelalvarezweb.com", label: "Email", color: "hover:text-red-400" },
     { icon: WhatsAppIcon, href: whatsAppUrl, label: "WhatsApp", color: "hover:text-green-400" },
   ];
 
@@ -192,14 +192,14 @@ export function Footer() {
               <h4 className="text-xl font-semibold text-white mb-8">Contacto</h4>
               <div className="space-y-4 text-gray-400">
                 <motion.a
-                  href="mailto:miguelalvaarezz@gmail.com"
+                  href="mailto:info@miguelalvarezweb.com"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
                   viewport={{ once: true }}
                   className="hover:text-white transition-colors duration-300 cursor-pointer block"
                 >
-                  miguelalvaarezz@gmail.com
+                  info@miguelalvarezweb.com
                 </motion.a>
                 <motion.a
                   href="tel:+34695537321"

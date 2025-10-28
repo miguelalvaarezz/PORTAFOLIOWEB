@@ -43,7 +43,7 @@ Crea un archivo `.env.local` en la raíz del proyecto:
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=tu_service_id_aqui
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=tu_template_id_aqui
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=tu_public_key_aqui
-NEXT_PUBLIC_EMAILJS_TO_EMAIL=miguelalvaarezz@gmail.com
+NEXT_PUBLIC_EMAILJS_TO_EMAIL=info@miguelalvarezweb.com
 ```
 
 ## Paso 6: Actualizar el código

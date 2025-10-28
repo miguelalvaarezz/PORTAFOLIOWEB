@@ -122,7 +122,7 @@ export function MobileFooter() {
             {[
               { text: "Lanzarote, España" },
               { text: "+34 695 537 321" },
-              { text: "miguelalvaarezz@gmail.com" }
+              { text: "info@miguelalvarezweb.com" }
             ].map((item, index) => (
               <motion.div
                 key={index}

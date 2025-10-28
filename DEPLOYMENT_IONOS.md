@@ -54,11 +54,11 @@ En el panel de IONOS, añade estas variables:
 ```
 NODE_ENV=production
 NEXT_PUBLIC_SITE_URL=https://tu-dominio.com
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=tu_service_id
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=tu_template_id
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=tu_public_key
-NEXT_PUBLIC_EMAILJS_TO_EMAIL=miguelalvaarezz@gmail.com
+NEXT_PUBLIC_TELEGRAM_BOT_TOKEN=tu_bot_token
+NEXT_PUBLIC_TELEGRAM_CHAT_ID=tu_chat_id
 ```
+
+📖 **Configuración de Telegram**: Ver `TELEGRAM_SETUP.md`
 
 ## 🌐 CONFIGURAR DOMINIO PERSONALIZADO
 

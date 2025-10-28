@@ -18,7 +18,7 @@ import {
   Instagram,
   MessageCircle
 } from "lucide-react";
-import emailjs from '@emailjs/browser';
+// Telegram Bot - Recibe notificaciones en tu teléfono
 
 // WhatsApp Icon Component
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -57,25 +57,50 @@ export function ContactSection() {
     setIsSubmitting(true);
     
     try {
-      // EmailJS configuration using environment variables
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_your_service_id';
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_your_template_id';
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'your_public_key';
-      const toEmail = process.env.NEXT_PUBLIC_EMAILJS_TO_EMAIL || 'miguelalvaarezz@gmail.com';
+      // Telegram Bot configuration
+      const botToken = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN;
+      const chatId = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID;
       
-      // Send email using EmailJS
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          to_email: toEmail,
+      // Validate configuration
+      if (!botToken || botToken === 'tu_bot_token') {
+        throw new Error('Telegram Bot Token no configurado');
+      }
+      if (!chatId || chatId === 'tu_chat_id') {
+        throw new Error('Telegram Chat ID no configurado');
+      }
+      
+      // Format message for Telegram
+      const message = `
+🆕 *Nueva solicitud de Demo Gratuita*
+
+👤 *Nombre:* ${formData.name}
+📧 *Email:* ${formData.email}
+🏢 *Club:* ${formData.subject}
+💬 *Mensaje:*
+${formData.message}
+
+---
+📅 ${new Date().toLocaleString('es-ES')}
+      `;
+      
+      // Send message to Telegram
+      const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        publicKey
-      );
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+          parse_mode: 'Markdown',
+        }),
+      });
+      
+      const responseData = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(`Error de Telegram: ${responseData.description || 'Error desconocido'}`);
+      }
       
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -87,9 +112,9 @@ export function ContactSection() {
       }, 3000);
       
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('Error sending message:', error);
       setIsSubmitting(false);
-      // You could add error state handling here
+      alert('Error al enviar el mensaje. Por favor, inténtalo de nuevo o contáctame directamente por WhatsApp.');
     }
   };
 
@@ -97,8 +122,8 @@ export function ContactSection() {
     {
       icon: Mail,
       title: "Email",
-      value: "miguelalvaarezz@gmail.com",
-      href: "mailto:miguelalvaarezz@gmail.com",
+      value: "info@miguelalvarezweb.com",
+      href: "mailto:info@miguelalvarezweb.com",
     },
     {
       icon: Phone,
