@@ -126,12 +126,6 @@ ${formData.message}
       href: "mailto:info@miguelalvarezweb.com",
     },
     {
-      icon: Phone,
-      title: "Teléfono",
-      value: "+34 695 537 321",
-      href: "tel:+34695537321",
-    },
-    {
       icon: WhatsAppIcon,
       title: "WhatsApp",
       value: "+34 695 537 321",
