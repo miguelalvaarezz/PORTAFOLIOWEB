@@ -215,7 +215,7 @@ export function MobileHeroSection() {
               className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-2xl group"
             >
               <Code className="w-5 h-5 mr-2 group-hover:animate-spin" />
-              Ver demo gratuita
+              Transformación 360º
             </Button>
             <Button 
               onClick={scrollToContact}
@@ -223,7 +223,7 @@ export function MobileHeroSection() {
               className="bg-transparent border border-white text-white hover:bg-white hover:text-black font-semibold transition-all duration-300 group"
             >
               <MessageCircle className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" />
-              Agenda una llamada
+              Solicita tu demo gratuita
             </Button>
           </motion.div>
         </motion.div>

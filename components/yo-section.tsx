@@ -24,7 +24,7 @@ export function YoSection() {
       className="relative bg-gray-50 pb-10 overflow-hidden -mt-20"
     >
       {/* Diagonal transition from previous section */}
-      <div className="absolute -top-0.5 -left-0 right-0 w-screen overflow-hidden">
+      <div className="absolute -top-0.5 -left-0 right-0 w-screen overflow-hidden z-50">
         <svg
           className="w-full h-40"
           viewBox="0 0 1200 200"
@@ -41,7 +41,7 @@ export function YoSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/padelnova/mejoresgolpes.jpg"
+          src="/pistapadel.jpg"
           alt="Background"
           fill
           className="object-cover opacity-5"
@@ -90,7 +90,7 @@ export function YoSection() {
           >
             {/* Photo */}
             <motion.div 
-              className="relative flex justify-center lg:justify-start"
+              className="relative flex flex-col items-center lg:items-end"
               initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
               transition={{ 
@@ -99,7 +99,7 @@ export function YoSection() {
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
-              <div className="relative aspect-square w-48 sm:w-56 md:w-64 lg:max-w-[280px] bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl overflow-hidden">
+              <div className="relative aspect-square w-48 sm:w-56 md:w-64 lg:max-w-[280px] bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl overflow-hidden mb-3">
                 <Image
                   src="/miguelalvarez.webp"
                   alt="Miguel Álvarez - Diseñador y Desarrollador Web"
@@ -108,43 +108,32 @@ export function YoSection() {
                   priority
                 />
               </div>
-              {/* Subtle accent */}
-              <motion.div 
-                className="absolute -bottom-2 -right-2 md:-bottom-4 md:-right-4 w-16 h-16 md:w-24 md:h-24 bg-blue-600/10 rounded-2xl -z-10"
-                initial={{ opacity: 0, scale: 0 }}
+
+              {/* Status badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
                 transition={{ 
                   duration: 0.6, 
-                  delay: 0.8,
+                  delay: 1.0,
                   ease: [0.34, 1.56, 0.64, 1]
                 }}
-              />
-            </motion.div>
-
-            {/* Status badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: 1.0,
-                ease: [0.34, 1.56, 0.64, 1]
-              }}
-              className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-full mx-auto lg:mx-0"
-            >
-              <motion.div 
-                className="w-2 h-2 bg-green-500 rounded-full"
-                animate={{ 
-                  scale: [1, 1.2, 1],
-                  opacity: [1, 0.7, 1]
-                }}
-                transition={{ 
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              <span className="text-sm text-gray-600 font-medium">Available for work</span>
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-full mt-4 lg:mt-0"
+              >
+                <motion.div 
+                  className="w-2 h-2 bg-green-500 rounded-full"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [1, 0.7, 1]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <span className="text-sm text-gray-600 font-medium">Available for work</span>
+              </motion.div>
             </motion.div>
           </motion.div>
 
@@ -180,7 +169,7 @@ export function YoSection() {
                   ease: [0.25, 0.46, 0.45, 0.94]
                 }}
               >
-                Miguel Álvarez
+                Miguel <span className="text-[#D6E826]">Álvarez</span>
               </motion.h2>
               <motion.p 
                 className="text-lg sm:text-xl md:text-2xl text-gray-600 font-light"
@@ -293,22 +282,22 @@ export function YoSection() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button
-                  onClick={() => {
-                    const contactElement = document.getElementById('contacto');
-                    if (contactElement) {
-                      contactElement.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'start' 
-                      });
-                    }
-                  }}
-                  size="lg"
-                  data-cursor-magnetic
-                  className="group bg-blue-600 hover:bg-blue-700 text-white font-medium h-12 px-6"
-                >
-                  Let's work together
-                  <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </Button>
+                         onClick={() => {
+                           const contactElement = document.getElementById('contacto');
+                           if (contactElement) {
+                             contactElement.scrollIntoView({
+                               behavior: 'smooth',
+                               block: 'start'
+                             });
+                           }
+                         }}
+                         size="lg"
+                         data-cursor-magnetic
+                         className="group bg-[#D6E826] hover:bg-[#C6D81F] text-black font-medium h-12 px-6"
+                       >
+                         ¡Trabajemos juntos!
+                         <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                       </Button>
               </motion.div>
             </motion.div>
           </motion.div>

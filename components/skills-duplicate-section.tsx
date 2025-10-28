@@ -107,7 +107,18 @@ export function SkillsDuplicateSection() {
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.9, delay: 1.4, ease: [0.23, 1, 0.32, 1] }}
                 >
-                  <button className="w-full sm:w-auto inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-blue-500/50 hover:scale-105">
+                  <button 
+                    onClick={() => {
+                      const contactElement = document.getElementById('contacto');
+                      if (contactElement) {
+                        contactElement.scrollIntoView({
+                          behavior: 'smooth',
+                          block: 'start'
+                        });
+                      }
+                    }}
+                    className="w-full sm:w-auto inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-blue-500/50 hover:scale-105 cursor-pointer"
+                  >
                     Transforma el futuro de tu club
                     <ArrowUpRight className="w-5 h-5" />
                   </button>

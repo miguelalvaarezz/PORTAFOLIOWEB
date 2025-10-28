@@ -219,9 +219,9 @@ export function MobileYoSection() {
               onClick={scrollToContact}
               size="lg"
               data-cursor-magnetic
-              className="group bg-blue-600 hover:bg-blue-700 text-white font-medium h-12 px-6"
+              className="group bg-[#D6E826] hover:bg-[#C6D81F] text-black font-medium h-12 px-6"
             >
-              Let's work together
+              ¡Trabajemos juntos!
               <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Button>
           </motion.div>

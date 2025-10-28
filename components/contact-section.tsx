@@ -307,7 +307,7 @@ export function ContactSection() {
                       <MessageCircle className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <span className="text-blue-600">Cuéntame tu idea</span>
+                      <span className="text-blue-600">Solicita tu demo gratuita</span>
                     </div>
                   </div>
                   <motion.div
@@ -392,7 +392,7 @@ export function ContactSection() {
                     >
                       <label htmlFor="subject" className="text-sm font-semibold text-gray-700 flex items-center">
                         <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                        Asunto *
+                        Nombre del club *
                       </label>
                       <Input
                         id="subject"
@@ -402,7 +402,7 @@ export function ContactSection() {
                         value={formData.subject}
                         onChange={handleInputChange}
                         className="h-14 border-gray-200 focus:border-blue-500 focus:ring-blue-500 rounded-2xl text-lg transition-all duration-300 hover:border-blue-300"
-                        placeholder="¿En qué puedo ayudarte?"
+                        placeholder="Nombre de tu club"
                       />
                     </motion.div>
 
@@ -414,7 +414,7 @@ export function ContactSection() {
                     >
                       <label htmlFor="message" className="text-sm font-semibold text-gray-700 flex items-center">
                         <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                        Mensaje *
+                        Descripción *
                       </label>
                       <Textarea
                         id="message"
@@ -424,7 +424,7 @@ export function ContactSection() {
                         value={formData.message}
                         onChange={handleInputChange}
                         className="border-gray-200 focus:border-blue-500 focus:ring-blue-500 resize-none rounded-2xl text-lg transition-all duration-300 hover:border-blue-300"
-                        placeholder="Cuéntame sobre tu proyecto..."
+                        placeholder="Cuéntame sobre tu visión..."
                       />
                     </motion.div>
 
@@ -579,7 +579,10 @@ export function ContactSection() {
                 Enviar Email
               </Button>
               <Button
-                onClick={() => window.open('https://wa.me/34695537321', '_blank')}
+                onClick={() => {
+                  const message = encodeURIComponent('Buenas Miguel, me interesa conocer cómo podría transformar mi club de pádel con una web moderna, con reservas automáticas y torneos online.\n¿Podríamos agendar una demo gratuita para verlo en acción?\n¡Gracias!');
+                  window.open(`https://wa.me/34695537321?text=${message}`, '_blank');
+                }}
                 size="lg"
                 data-cursor-magnetic
                 className="bg-green-600 hover:bg-green-700 text-white h-12 md:h-14 px-6 md:px-8 text-base md:text-lg font-semibold rounded-xl md:rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 group"

@@ -19,16 +19,21 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const whatsAppMessage = encodeURIComponent('Buenas Miguel, me interesa conocer cómo podría transformar mi club de pádel con una web moderna, con reservas automáticas y torneos online.\n¿Podríamos agendar una demo gratuita para verlo en acción?\n¡Gracias!');
+  const whatsAppUrl = `https://wa.me/34695537321?text=${whatsAppMessage}`;
+
   const socialLinks = [
     { icon: Mail, href: "mailto:miguelalvaarezz@gmail.com", label: "Email", color: "hover:text-red-400" },
-    { icon: WhatsAppIcon, href: "https://wa.me/34695537321", label: "WhatsApp", color: "hover:text-green-400" },
+    { icon: WhatsAppIcon, href: whatsAppUrl, label: "WhatsApp", color: "hover:text-green-400" },
   ];
 
   const quickLinks = [
-    { href: "#sobre-mi", label: "Sobre Mí" },
-    { href: "#proyectos", label: "Proyectos" },
-    { href: "#habilidades", label: "Habilidades" },
-    { href: "#contacto", label: "Contacto" },
+    { href: "#sobre-mi", label: "1. Problemas" },
+    { href: "#proyectos", label: "2. Soluciones" },
+    { href: "#habilidades", label: "3. Demo" },
+    { href: "#skills", label: "4. Proceso" },
+    { href: "#yo", label: "5. About Me" },
+    { href: "#contacto", label: "6. Contacto" },
   ];
 
   const scrollToTop = () => {
@@ -169,7 +174,7 @@ export function Footer() {
                       className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center group"
                     >
                       <span>{link.label}</span>
-                      <ArrowUpRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <ArrowUpRight className="w-4 h-4 ml-2 opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
                     </Link>
                   </motion.li>
                 ))}
