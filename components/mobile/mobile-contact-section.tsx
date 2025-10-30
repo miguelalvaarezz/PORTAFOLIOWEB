@@ -114,14 +114,6 @@ ${formData.message}
     }
   };
 
-  const openWhatsApp = () => {
-    const phoneNumber = "+34695537321"; // Tu número de WhatsApp
-    const message = "¡Hola Miguel! He visto tu portafolio y me interesa trabajar contigo en un proyecto web. Me gusta tu enfoque en diseño moderno y desarrollo eficiente. ¿Podemos hablar sobre mi proyecto?";
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    
-    window.open(whatsappUrl, '_blank');
-  };
 
   const contactInfo = [
     {
@@ -146,21 +138,7 @@ ${formData.message}
 
 
   return (
-    <section id="contacto-mobile" ref={ref} className="py-16 bg-gray-50 relative -mt-8 px-4">
-      {/* Section Transition */}
-      <div className="absolute top-0 left-0 right-0">
-        <svg
-          className="w-full h-16 text-black"
-          viewBox="0 0 1200 80"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M1200,0 L1200,80 C1050,72 900,76 750,68 C600,60 450,64 300,56 C150,48 50,32 0,0 L0,0 Z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
-
+    <section id="contacto-mobile" ref={ref} className="py-16 bg-gray-50 relative -mt-0.5 px-4">
       <div className="relative z-10 max-w-sm mx-auto mt-8 px-6">
         {/* Header */}
         <motion.div
@@ -169,42 +147,27 @@ ${formData.message}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <motion.span 
-            className="inline-block text-blue-600 text-xs font-light tracking-[0.3em] uppercase mb-4"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            05 Contacto
-          </motion.span>
           <motion.h2 
-            className="text-3xl font-black text-gray-900 mb-4"
+            className="text-2xl sm:text-3xl font-black text-gray-900 mb-3 -mt-[4.5rem]"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Hablemos de tu <motion.span 
-              className="gradient-text bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 bg-clip-text text-transparent"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              próximo proyecto
-            </motion.span>
+            <span className="text-black">Decide el futuro de tu club</span> <span className="text-blue-600">HOY</span>.
           </motion.h2>
           <motion.p 
-            className="text-sm text-gray-600 leading-relaxed px-2"
+            className="text-sm text-gray-600 leading-relaxed"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
-            ¿Tienes una idea en mente? Me encantaría escucharla y ayudarte a convertirla en realidad.
+            Agenda una <strong>demo gratuita</strong> y descubre cómo podemos digitalizar tu club de pádel con <strong>diseño web premium</strong> y <strong>sistemas</strong> que te harán destacar.
           </motion.p>
         </motion.div>
 
         {/* Contact Form */}
         <motion.div
-          className="mb-8"
+          className="mb-8 hidden"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 1.2 }}
@@ -213,7 +176,7 @@ ${formData.message}
             <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6">
               <CardTitle className="text-lg font-bold flex items-center gap-2">
                 <MessageCircle className="w-5 h-5" />
-                Envíame un mensaje
+                Solicita tu demo gratuita
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
@@ -308,13 +271,16 @@ ${formData.message}
           transition={{ duration: 0.8, delay: 1.4 }}
         >
           <button
-            onClick={openWhatsApp}
+            onClick={() => {
+              const message = encodeURIComponent('Buenas Miguel, me interesa conocer cómo podría transformar mi club de pádel con una web moderna, con reservas automáticas y torneos online.\n¿Podríamos agendar una demo gratuita para verlo en acción?\n¡Gracias!');
+              window.open(`https://wa.me/34695537321?text=${message}`, '_blank');
+            }}
             className="block w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             data-cursor-magnetic
           >
             <div className="flex items-center justify-center gap-3">
               <WhatsAppIcon className="w-6 h-6" />
-              <span>Enviar WhatsApp</span>
+              <span>Solicita tu <strong>demo gratuita</strong></span>
             </div>
           </button>
         </motion.div>

@@ -25,8 +25,23 @@ export function MobileYoSection() {
     <section
       id="yo"
       ref={sectionRef}
-      className="relative bg-gray-50 pb-8 overflow-hidden -mt-12 px-4"
+      className="relative bg-gray-50 pb-16 overflow-hidden -mt-12 px-4"
     >
+      {/* Diagonal transition from previous section */}
+      <div className="absolute top-[46px] -left-0 right-0 w-screen overflow-hidden z-50">
+        <svg
+          className="w-full h-40"
+          viewBox="0 0 1200 200"
+          preserveAspectRatio="none"
+          style={{ maxWidth: '100vw' }}
+        >
+          <path
+            d="M0,0 L1200,0 L1200,200 Q1000,150 800,120 Q600,90 400,80 Q200,70 0,0 Z"
+            fill="black"
+          />
+        </svg>
+      </div>
+
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -49,26 +64,14 @@ export function MobileYoSection() {
         />
       </div>
 
-      <div className="relative max-w-lg mx-auto mt-40">
-
-        {/* Tag */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
-        >
-          <span className="text-blue-600 text-xs font-light tracking-[0.3em] uppercase">
-            05 ABOUT ME
-          </span>
-        </motion.div>
+      <div className="relative max-w-lg mx-auto mt-16">
 
         {/* Main Content */}
         <div className="space-y-6">
 
           {/* Photo */}
           <motion.div
-            className="relative flex justify-center"
+            className="relative flex justify-center z-50"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0 }}
             transition={{
@@ -86,17 +89,6 @@ export function MobileYoSection() {
                 priority
               />
             </div>
-            {/* Subtle accent */}
-            <motion.div
-              className="absolute -bottom-2 -right-2 w-16 h-16 bg-blue-600/10 rounded-2xl -z-10"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.8,
-                ease: [0.34, 1.56, 0.64, 1]
-              }}
-            />
           </motion.div>
 
           {/* Status badge */}
@@ -148,7 +140,7 @@ export function MobileYoSection() {
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
-              Miguel Álvarez
+              Miguel <span className="text-[#D6E826]">Álvarez</span>
             </motion.h2>
             <motion.p
               className="text-lg text-gray-600 font-light"
@@ -168,7 +160,7 @@ export function MobileYoSection() {
           <div className="mb-6">
             <div className="relative">
               <motion.p
-                className={`text-sm text-gray-600 leading-relaxed text-center transition-all duration-300 ${isExpanded ? '' : 'line-clamp-4'}`}
+                className={`text-sm text-gray-600 leading-relaxed text-justify px-4 transition-all duration-300 ${isExpanded ? '' : 'line-clamp-4'}`}
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                 transition={{
@@ -216,10 +208,13 @@ export function MobileYoSection() {
             className="pt-4 flex justify-center"
           >
             <Button
-              onClick={scrollToContact}
+              onClick={() => {
+                const message = encodeURIComponent('Buenas Miguel, me interesa conocer cómo podría transformar mi club de pádel con una web moderna, con reservas automáticas y torneos online.\n¿Podríamos agendar una demo gratuita para verlo en acción?\n¡Gracias!');
+                window.open(`https://wa.me/34695537321?text=${message}`, '_blank');
+              }}
               size="lg"
               data-cursor-magnetic
-              className="group bg-[#D6E826] hover:bg-[#C6D81F] text-black font-medium h-12 px-6"
+              className="group bg-[#D6E826] hover:bg-[#C6D81F] text-black font-bold h-12 px-6"
             >
               ¡Trabajemos juntos!
               <ArrowUpRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -227,6 +222,21 @@ export function MobileYoSection() {
           </motion.div>
 
         </div>
+      </div>
+
+      {/* Section Transition to contact section */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <svg
+          className="w-full h-16"
+          viewBox="0 0 1200 80"
+          preserveAspectRatio="none"
+          style={{ transform: 'rotate(180deg)' }}
+        >
+          <path
+            d="M1200,0 L1200,80 C1050,72 900,76 750,68 C600,60 450,64 300,56 C150,48 50,32 0,0 L0,0 Z"
+            fill="#f9fafb"
+          />
+        </svg>
       </div>
     </section>
   );

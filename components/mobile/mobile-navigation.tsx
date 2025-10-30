@@ -56,7 +56,7 @@ export function MobileNavigation({ onMenuToggle, isMenuOpen }: MobileNavigationP
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
         isScrolled 
           ? 'backdrop-blur-md bg-black/20' 
           : 'backdrop-blur-sm bg-black/10'

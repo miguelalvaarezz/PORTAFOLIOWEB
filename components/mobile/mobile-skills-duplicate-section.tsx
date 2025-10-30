@@ -54,7 +54,7 @@ export function MobileSkillsDuplicateSection() {
   const isInView = useInView(ref, { once: true, margin: "-200px" });
 
   return (
-    <section id="skills" ref={ref} className="py-16 bg-[#0f1f3a] px-4">
+    <section id="skills" ref={ref} className="py-16 bg-black px-4 relative" style={{ zIndex: 100 }}>
       <div className="max-w-lg mx-auto">
         
         {/* Header */}
@@ -66,12 +66,12 @@ export function MobileSkillsDuplicateSection() {
         >
           <div className="text-center">
             <motion.span 
-              className="inline-block text-blue-400 text-xs font-light tracking-[0.3em] uppercase mb-4"
+              className="inline-block text-blue-400 text-xs font-light tracking-[0.3em] uppercase mb-4 -mt-4"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: [0.23, 1, 0.32, 1] }}
             >
-              04 STEP BY STEP
+              STEP BY STEP
             </motion.span>
             <div>
               <motion.h2 
@@ -80,7 +80,8 @@ export function MobileSkillsDuplicateSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.9, delay: 0.6, ease: [0.23, 1, 0.32, 1] }}
               >
-                Tu nueva web al completo, lista en menos de <span className="text-blue-600">4 semanas.</span>
+                <span className="block">Tu nueva web al completo, lista</span>
+                <span className="block">en menos de <span className="text-blue-600">4 semanas.</span></span>
               </motion.h2>
               <motion.p 
                 className="text-sm text-gray-300 leading-relaxed mb-6"
@@ -90,21 +91,6 @@ export function MobileSkillsDuplicateSection() {
               >
                 Un proceso simple. Resultados profesionales.
               </motion.p>
-
-              {/* CTA */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.9, delay: 1.4, ease: [0.23, 1, 0.32, 1] }}
-              >
-                <button className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-blue-500/50">
-                  Transforma el futuro de tu club
-                  <ArrowUpRight className="w-4 h-4" />
-                </button>
-                <p className="text-xs text-gray-400 mt-2">
-                  Sin compromiso, sin complicaciones.
-                </p>
-              </motion.div>
             </div>
           </div>
         </motion.div>
@@ -162,6 +148,30 @@ export function MobileSkillsDuplicateSection() {
             );
           })}
         </div>
+
+        {/* CTA */}
+        <motion.div
+          className="mt-8 flex justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.9, delay: 1.4, ease: [0.23, 1, 0.32, 1] }}
+        >
+          <div className="flex flex-col items-center gap-2">
+            <button 
+              onClick={() => {
+                const message = encodeURIComponent('Buenas Miguel, me interesa conocer cómo podría transformar mi club de pádel con una web moderna, con reservas automáticas y torneos online.\n¿Podríamos agendar una demo gratuita para verlo en acción?\n¡Gracias!');
+                window.open(`https://wa.me/34695537321?text=${message}`, '_blank');
+              }}
+              className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-blue-500/50 whitespace-nowrap"
+            >
+              Transforma el futuro de tu club
+              <ArrowUpRight className="w-4 h-4" />
+            </button>
+            <p className="text-xs text-gray-400 mt-2 text-center">
+              Sin compromiso, sin complicaciones.
+            </p>
+          </div>
+        </motion.div>
 
       </div>
     </section>

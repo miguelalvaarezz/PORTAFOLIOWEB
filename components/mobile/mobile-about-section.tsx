@@ -53,7 +53,7 @@ export function MobileAboutSection() {
         >
           {/* Title */}
           <motion.div 
-            className="space-y-3 text-center mb-12"
+            className="space-y-3 text-center mb-6"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
             transition={{ 
@@ -63,7 +63,7 @@ export function MobileAboutSection() {
             }}
           >
             <motion.h2 
-              className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight"
+              className="text-2xl sm:text-3xl font-black text-gray-900 leading-tight px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.8 }}
               transition={{ 
@@ -85,7 +85,8 @@ export function MobileAboutSection() {
                 ease: [0.23, 1, 0.32, 1]
               }}
             >
-              Eso se traduce en menor ocupación y por lo tanto menor facturación.
+              <span className="block">Eso se traduce en menor ocupación y por</span>
+              <span className="block">lo tanto menor facturación.</span>
             </motion.p>
           </motion.div>
 
@@ -101,27 +102,27 @@ export function MobileAboutSection() {
               {/* Glow effect */}
               <div className="absolute -inset-0.5 bg-gradient-to-r from-gray-400 via-gray-500 to-gray-400 rounded-3xl opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500" />
               
-              <div className="relative bg-white rounded-3xl p-6 border border-gray-100 shadow-xl transition-all duration-500 h-full flex flex-col">
+              <div className="relative bg-white rounded-3xl px-5 py-4 border border-gray-100 shadow-xl transition-all duration-500 h-full flex flex-col">
                 {/* Icon container */}
-                <div className="relative mb-6">
+                <div className="relative mb-4">
                   <div className="absolute -top-2 -left-2 w-16 h-16 bg-transparent rounded-2xl" />
-                  <div className="relative w-12 h-12 bg-white border-2 border-gray-300 rounded-2xl flex items-center justify-center transform transition-all duration-300">
-                    <Phone className="w-6 h-6 text-red-600" />
+                  <div className="relative w-10 h-10 bg-white border-2 border-gray-300 rounded-2xl flex items-center justify-center transform transition-all duration-300">
+                    <Phone className="w-5 h-5 text-red-600" />
                   </div>
                 </div>
                 
                 {/* Content */}
-                <div className="flex-grow">
-                  <h3 className="text-lg font-black text-gray-900 mb-3 leading-tight">
+                <div className="flex-grow text-left">
+                  <h3 className="text-base font-black text-gray-900 mb-2 leading-tight text-left">
                     Reservas manuales = pérdida de tiempo
                   </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed font-light">
+                  <p className="text-xs text-gray-600 leading-relaxed font-light text-left">
                     Horas de gestión que podrías dedicar a mejorar tu club.
                   </p>
                 </div>
                 
                 {/* Decorative element */}
-                <div className="mt-4 h-1 w-16 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full transition-all duration-500" />
+                <div className="mt-3 h-1 w-16 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full transition-all duration-500" />
               </div>
             </motion.div>
 
@@ -135,27 +136,27 @@ export function MobileAboutSection() {
               {/* Glow effect */}
               <div className="absolute -inset-0.5 bg-gradient-to-r from-gray-400 via-gray-500 to-gray-400 rounded-3xl opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500" />
               
-              <div className="relative bg-white rounded-3xl p-6 border border-gray-100 shadow-xl transition-all duration-500 h-full flex flex-col">
+              <div className="relative bg-white rounded-3xl px-5 py-4 border border-gray-100 shadow-xl transition-all duration-500 h-full flex flex-col">
                 {/* Icon container */}
-                <div className="relative mb-6">
+                <div className="relative mb-4">
                   <div className="absolute -top-2 -left-2 w-16 h-16 bg-transparent rounded-2xl" />
-                  <div className="relative w-12 h-12 bg-white border-2 border-gray-300 rounded-2xl flex items-center justify-center transform transition-all duration-300">
-                    <Globe className="w-6 h-6 text-red-600" />
+                  <div className="relative w-10 h-10 bg-white border-2 border-gray-300 rounded-2xl flex items-center justify-center transform transition-all duration-300">
+                    <Globe className="w-5 h-5 text-red-600" />
                   </div>
                 </div>
                 
                 {/* Content */}
-                <div className="flex-grow">
-                  <h3 className="text-lg font-black text-gray-900 mb-3 leading-tight">
+                <div className="flex-grow text-left">
+                  <h3 className="text-base font-black text-gray-900 mb-2 leading-tight text-left">
                     Web anticuada que no genera confianza
                   </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed font-light">
+                  <p className="text-xs text-gray-600 leading-relaxed font-light text-left">
                     Tu club se ve menos profesional de lo que realmente es.
                   </p>
                 </div>
                 
                 {/* Decorative element */}
-                <div className="mt-4 h-1 w-16 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full transition-all duration-500" />
+                <div className="mt-3 h-1 w-16 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full transition-all duration-500" />
               </div>
             </motion.div>
 
@@ -169,27 +170,27 @@ export function MobileAboutSection() {
               {/* Glow effect */}
               <div className="absolute -inset-0.5 bg-gradient-to-r from-gray-400 via-gray-500 to-gray-400 rounded-3xl opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500" />
               
-              <div className="relative bg-white rounded-3xl p-6 border border-gray-100 shadow-xl transition-all duration-500 h-full flex flex-col">
+              <div className="relative bg-white rounded-3xl px-5 py-4 border border-gray-100 shadow-xl transition-all duration-500 h-full flex flex-col">
                 {/* Icon container */}
-                <div className="relative mb-6">
+                <div className="relative mb-4">
                   <div className="absolute -top-2 -left-2 w-16 h-16 bg-transparent rounded-2xl" />
-                  <div className="relative w-12 h-12 bg-white border-2 border-gray-300 rounded-2xl flex items-center justify-center transform transition-all duration-300">
-                    <Calendar className="w-6 h-6 text-red-600" />
+                  <div className="relative w-10 h-10 bg-white border-2 border-gray-300 rounded-2xl flex items-center justify-center transform transition-all duration-300">
+                    <Calendar className="w-5 h-5 text-red-600" />
                   </div>
                 </div>
                 
                 {/* Content */}
-                <div className="flex-grow">
-                  <h3 className="text-lg font-black text-gray-900 mb-3 leading-tight">
+                <div className="flex-grow text-left">
+                  <h3 className="text-base font-black text-gray-900 mb-2 leading-tight text-left">
                     Torneos difíciles de organizar
                   </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed font-light">
-                    Listas confusas, inscripciones por mensajes y caos en los resultados.
+                  <p className="text-xs text-gray-600 leading-relaxed font-light text-left">
+                    Inscripciones por mensajes y caos en los resultados.
                   </p>
                 </div>
                 
                 {/* Decorative element */}
-                <div className="mt-4 h-1 w-16 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full transition-all duration-500" />
+                <div className="mt-3 h-1 w-16 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full transition-all duration-500" />
               </div>
             </motion.div>
           </div>
@@ -199,9 +200,9 @@ export function MobileAboutSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 1.8 }}
-            className="w-full mt-12"
+            className="w-full mt-12 relative z-50"
           >
-            <div className="relative max-w-lg mx-auto">
+            <div className="relative max-w-lg mx-auto px-4">
               <p className="text-sm text-gray-900 font-black text-right mb-2">
                 &gt; Facturación
               </p>
@@ -228,13 +229,13 @@ export function MobileAboutSection() {
       {/* Section Transition - Inverted */}
       <div className="absolute -bottom-5 left-0 right-0">
         <svg
-          className="w-full h-20 text-blue-800"
+          className="w-full h-20"
           viewBox="0 0 1200 100"
           preserveAspectRatio="none"
         >
           <path
             d="M0,100 L0,50 C80,30 160,70 240,25 C320,0 400,40 480,15 C560,0 640,30 720,10 C800,0 880,25 960,5 C1040,0 1120,15 1200,10 L1200,100 Z"
-            fill="currentColor"
+            fill="#091334"
           />
         </svg>
       </div>

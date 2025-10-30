@@ -8,9 +8,22 @@ import Image from "next/image";
 
 export function MobileHeroSection() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [touchPosition, setTouchPosition] = useState({ x: 0, y: 0 });
+  const [hasTouched, setHasTouched] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
+    
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        setHasTouched(true);
+        const touch = e.touches[0];
+        setTouchPosition({ x: touch.clientX, y: touch.clientY });
+      }
+    };
+
+    window.addEventListener("touchmove", handleTouchMove);
+    return () => window.removeEventListener("touchmove", handleTouchMove);
   }, []);
 
   const floatingElements = [
@@ -49,7 +62,7 @@ export function MobileHeroSection() {
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-black to-gray-900"></div>
         
-        {/* Background Image */}
+        {/* Background Image with Subtle Reveal Effect */}
         <div className="absolute inset-0 pointer-events-none">
           <Image
             src="/padel-hero.webp"
@@ -60,6 +73,31 @@ export function MobileHeroSection() {
             quality={90}
           />
         </div>
+        
+        {/* Mask for reveal effect */}
+        {(() => {
+          const defaultX = typeof window !== 'undefined' ? window.innerWidth * 0.5 : 200;
+          const defaultY = typeof window !== 'undefined' ? window.innerHeight * 0.4 : 300;
+          
+          const revealX = hasTouched ? (defaultX + (touchPosition.x - defaultX) * 0.3) : defaultX;
+          const revealY = hasTouched ? (defaultY + (touchPosition.y - defaultY) * 0.3) : defaultY;
+          
+          const distanceX = hasTouched ? Math.abs(touchPosition.x - defaultX) : 0;
+          const distanceY = hasTouched ? Math.abs(touchPosition.y - defaultY) : 0;
+          const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+          const baseSize = hasTouched ? (600 + (distance * 0.5)) : 800;
+          const revealSize = baseSize;
+          
+          return (
+            <div 
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `radial-gradient(circle ${revealSize}px at ${revealX}px ${revealY}px, transparent 15%, rgba(0,0,0,0.95) 45%)`,
+                transition: 'background 0.4s ease-out',
+              }}
+            />
+          );
+        })()}
         
         {/* Floating Particles */}
         {floatingElements.map((element, index) => {
@@ -113,18 +151,18 @@ export function MobileHeroSection() {
               delay: 0.4,
               ease: [0.34, 1.56, 0.64, 1]
             }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600/20 border border-blue-500/30 rounded-full backdrop-blur-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/30 rounded-full backdrop-blur-sm"
           >
-            <Award className="w-4 h-4 text-blue-400" />
-            <span className="text-xs text-blue-300 font-medium">
-              Especializado en presencia digital para clubes de pádel
+            <Award className="w-4 h-4 text-white" />
+            <span className="text-xs text-white font-medium">
+              Especializados en webs para clubes de pádel
             </span>
           </motion.div>
 
           {/* Main Heading */}
           <div className="space-y-3">
             <motion.h1 
-              className="text-2xl sm:text-3xl font-black text-white leading-tight"
+              className="text-[28px] sm:text-4xl font-black text-white leading-tight"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ 
@@ -167,7 +205,7 @@ export function MobileHeroSection() {
                   ease: [0.23, 1, 0.32, 1]
                 }}
               >
-                con una web atractiva, reservas
+                con una web atractiva, <span className="text-[#D6E826]">reservas automáticas</span>
               </motion.span>
               <motion.span 
                 className="block"
@@ -179,28 +217,15 @@ export function MobileHeroSection() {
                   ease: [0.23, 1, 0.32, 1]
                 }}
               >
-                automáticas y torneos online.
+                y torneos online.
               </motion.span>
             </motion.h1>
           </div>
 
-          {/* Subtitle */}
-          <motion.p
-            className="text-base text-gray-300 leading-relaxed px-2"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 0.8, 
-              delay: 1.5,
-              ease: [0.23, 1, 0.32, 1]
-            }}
-          >
-            <strong>Aumenta tus reservas, ahorra tiempo de gestión y destaca</strong> frente a otros clubes con una web personalizada y totalmente optimizada.
-          </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col gap-3 pt-4"
+            className="flex flex-col gap-3 pt-4 max-w-[85%] mx-auto w-full"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ 
@@ -212,15 +237,18 @@ export function MobileHeroSection() {
             <Button 
               onClick={scrollToProjects}
               size="lg"
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-2xl group"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-2xl group w-full rounded-2xl"
             >
               <Code className="w-5 h-5 mr-2 group-hover:animate-spin" />
               Transformación 360º
             </Button>
             <Button 
-              onClick={scrollToContact}
+              onClick={() => {
+                const message = encodeURIComponent('Buenas Miguel, me interesa conocer cómo podría transformar mi club de pádel con una web moderna, con reservas automáticas y torneos online.\n¿Podríamos agendar una demo gratuita para verlo en acción?\n¡Gracias!');
+                window.open(`https://wa.me/34695537321?text=${message}`, '_blank');
+              }}
               size="lg"
-              className="bg-transparent border border-white text-white hover:bg-white hover:text-black font-semibold transition-all duration-300 group"
+              className="bg-transparent border border-white text-white hover:bg-white hover:text-black font-semibold transition-all duration-300 group w-full rounded-2xl"
             >
               <MessageCircle className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" />
               Solicita tu demo gratuita
@@ -231,7 +259,7 @@ export function MobileHeroSection() {
 
       {/* Stats Container - Bottom centered */}
       <motion.div
-        className="absolute bottom-4 left-0 right-0 z-30 flex justify-center px-4"
+        className="absolute bottom-2 left-0 right-0 z-30 flex justify-center px-4"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
