@@ -18,6 +18,9 @@ export function MobileSkillsSection() {
           src="/IMG_9901.webp"
           alt="Background"
           fill
+          unoptimized
+          priority
+          sizes="100vw"
           className="object-cover"
           quality={90}
         />
