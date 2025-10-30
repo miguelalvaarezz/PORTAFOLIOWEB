@@ -3,8 +3,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 export function MobileSkillsSection() {
   const ref = useRef(null);
@@ -14,15 +14,14 @@ export function MobileSkillsSection() {
     <section id="habilidades" ref={ref} className="relative pt-6 pb-4 bg-black px-4 mt-0 overflow-visible" data-disable-magnetic="true">
       {/* Background Image - extended to section 3 with clip path and black overlay */}
       <div className="absolute inset-0" style={{ top: '-400px', bottom: '0', zIndex: 1, clipPath: 'polygon(0% 100%, 0% 0%, 16.67% 4.38%, 33.33% 6.25%, 50% 5%, 66.67% 8.75%, 83.33% 12.5%, 100% 0%, 100% 100%)' }}>
-        <Image
-          src="/IMG_9901.webp"
-          alt="Background"
-          fill
-          unoptimized
-          priority
-          sizes="100vw"
-          className="object-cover"
-          quality={90}
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: 'url(/IMG_9901.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
         />
         {/* Black overlay mask */}
         <div className="absolute inset-0 bg-black/70" style={{ zIndex: 1 }}></div>
