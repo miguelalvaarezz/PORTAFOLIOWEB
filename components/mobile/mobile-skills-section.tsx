@@ -21,7 +21,6 @@ export function MobileSkillsSection() {
           className="object-cover"
           quality={90}
           priority
-          unoptimized
         />
         {/* Black overlay mask */}
         <div className="absolute inset-0 bg-black/70" style={{ zIndex: 1 }}></div>
