@@ -3,25 +3,26 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 
 export function MobileSkillsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-200px" });
 
   return (
-    <section id="habilidades" ref={ref} className="relative pt-6 pb-12 bg-black px-4 mt-0 overflow-visible" style={{ minHeight: '600px' }} data-disable-magnetic="true">
+    <section id="habilidades" ref={ref} className="relative pt-6 pb-4 bg-black px-4 mt-0 overflow-visible" data-disable-magnetic="true">
       {/* Background Image - extended to section 3 with clip path and black overlay */}
-      <div className="absolute inset-0 z-[1]" style={{ top: '-400px', bottom: '0', clipPath: 'polygon(0% 100%, 0% 0%, 16.67% 4.38%, 33.33% 6.25%, 50% 5%, 66.67% 8.75%, 83.33% 12.5%, 100% 0%, 100% 100%)', minHeight: '600px' }}>
-        <img
+      <div className="absolute inset-0" style={{ top: '-400px', bottom: '0', zIndex: 1, clipPath: 'polygon(0% 100%, 0% 0%, 16.67% 4.38%, 33.33% 6.25%, 50% 5%, 66.67% 8.75%, 83.33% 12.5%, 100% 0%, 100% 100%)' }}>
+        <Image
           src="/IMG_9901.webp"
           alt="Background"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
+          fill
+          className="object-cover"
+          quality={90}
         />
         {/* Black overlay mask */}
-        <div className="absolute inset-0 bg-black/70 z-[1]"></div>
+        <div className="absolute inset-0 bg-black/70" style={{ zIndex: 1 }}></div>
       </div>
 
       {/* Diagonal transition to next section */}
